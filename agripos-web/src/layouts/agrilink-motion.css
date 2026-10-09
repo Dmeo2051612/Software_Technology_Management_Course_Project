@@ -1,0 +1,191 @@
+/* ===== Hiệu ứng chuyển động & rê chuột AgriLink (mockup 53, duyệt 2026-09-29: lấy hết, bỏ M12) =====
+   Chỉ dùng transform/opacity (và translate/scale riêng lẻ) để mượt cả máy yếu; thời lượng 0,15–0,45 giây.
+   Không để fill "forwards/both" giữ transform trên khối lớn (biến nó thành khung chứa của position:fixed) —
+   dùng "backwards" cho hiệu ứng xuất hiện. Cuối file: tắt hết khi người dùng bật "giảm chuyển động". */
+.agrilink-shell {
+  --agl-ease-out: cubic-bezier(.2, .8, .2, 1);
+  --agl-ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+@keyframes agl-rise { from { opacity: 0; transform: translateY(12px); } }
+@keyframes agl-pop { 0% { transform: scale(0); } 55% { transform: scale(1.3); } 100% { transform: scale(1); } }
+@keyframes agl-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+/* ---------- M1 Thả tim: tim bật, vòng lan, tia bắn; số lượt thích lăn ---------- */
+.agl-heart { position: relative; display: inline-grid; place-items: center; }
+.cm-heart-on.agl-pop { animation: agl-pop .45s var(--agl-ease-spring); }
+.agl-burst { position: absolute; inset: 0; pointer-events: none; }
+.agl-burst::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid #F02849; opacity: 0; animation: agl-ring .5s var(--agl-ease-out); }
+@keyframes agl-ring { 0% { transform: scale(.3); opacity: .9; border-width: 6px; } 100% { transform: scale(1.4); opacity: 0; border-width: 0; } }
+.agl-burst i { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px; border-radius: 50%; background: #F02849; opacity: 0; animation: agl-spark .55s var(--agl-ease-out); }
+.agl-burst i:nth-child(even) { width: 4px; height: 4px; margin: -2px; background: #FBBF24; }
+@keyframes agl-spark { 0% { transform: rotate(var(--a)) translateY(0) scale(1); opacity: 1; } 100% { transform: rotate(var(--a)) translateY(-22px) scale(.3); opacity: 0; } }
+.agl-roll { display: inline-block; }
+.agl-roll.up { animation: agl-roll-up .25s var(--agl-ease-out); }
+.agl-roll.down { animation: agl-roll-down .25s var(--agl-ease-out); }
+@keyframes agl-roll-up { from { opacity: 0; transform: translateY(8px); } }
+@keyframes agl-roll-down { from { opacity: 0; transform: translateY(-8px); } }
+
+/* ---------- M2 Bảng tin: khung chờ lấp lánh, bài trượt lên lần lượt ---------- */
+.cm-skel-list { display: grid; gap: 16px; }
+.cm-skel-post { padding: 16px; display: grid; gap: 12px; }
+.cm-skel-head { display: flex; gap: 10px; align-items: center; }
+.cm-skel-bone { border-radius: 6px; background: linear-gradient(90deg, var(--agl-icon-bg, #E4E6EB) 0%, color-mix(in srgb, var(--agl-icon-bg, #E4E6EB) 40%, var(--agri-surface)) 50%, var(--agl-icon-bg, #E4E6EB) 100%); background-size: 200% 100%; animation: agl-shimmer 1.1s linear infinite; }
+.cm-skel-avatar { width: 40px; height: 40px; border-radius: 50%; flex: none; }
+.cm-skel-line { height: 10px; }
+.cm-post.cm-reveal { animation: agl-rise .45s var(--agl-ease-out) backwards; animation-delay: calc(var(--i, 0) * 80ms); }
+
+/* ---------- M3 Nút dưới bài viết: icon nhích khi rê, lún khi nhấn ---------- */
+.community-page .cm-post-actions > * { transition: background .15s, color .15s, transform .15s var(--agl-ease-out); }
+.community-page .cm-post-actions > *:active:not(:disabled) { transform: scale(.96); }
+.community-page .cm-post-actions svg { transition: transform .25s var(--agl-ease-spring); }
+.community-page .cm-post-actions > :nth-child(1):hover:not(.selected) svg { transform: scale(1.15); }
+.community-page .cm-post-actions > :nth-child(2):hover svg { transform: rotate(-10deg) scale(1.1); }
+.community-page .cm-post-actions > :nth-child(3):hover svg { transform: translateY(-2px); }
+.community-page .cm-post-actions > :nth-child(4):hover svg { transform: rotate(12deg); }
+
+/* ---------- M4 Cửa sổ bài viết: nền kính mờ dần, cửa sổ nảy lên; đóng thì thu lại ---------- */
+.cm-post-modal[open] { animation: agl-modal-in .32s var(--agl-ease-spring); }
+.cm-post-modal[open]::backdrop { animation: agl-backdrop-in .3s var(--agl-ease-out); }
+.cm-post-modal.is-closing { animation: agl-modal-out .18s var(--agl-ease-out) forwards; }
+.cm-post-modal.is-closing::backdrop { animation: agl-backdrop-out .18s var(--agl-ease-out) forwards; }
+@keyframes agl-modal-in { from { opacity: 0; transform: translateY(16px) scale(.96); } }
+@keyframes agl-modal-out { to { opacity: 0; transform: translateY(8px) scale(.98); } }
+@keyframes agl-backdrop-in { from { background: transparent; -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); } }
+@keyframes agl-backdrop-out { to { background: transparent; -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); } }
+.cm-post-modal-head button { transition: background .15s, transform .25s var(--agl-ease-spring); }
+.cm-post-modal-head button:hover { transform: rotate(90deg); }
+
+/* ---------- M5 Bộ lọc: viên pill trượt sang mục mới, nảy nhẹ khi dừng ---------- */
+.agrilink-shell .agl-pill-bar { position: relative; }
+.agrilink-shell .agl-pill-bar > :not(.agri-tab-pill) { position: relative; z-index: 1; }
+.agrilink-shell .agl-pill-bar > .agri-tab-pill {
+  border-radius: 999px; background: var(--agri-surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .10), 0 0 0 1px color-mix(in srgb, var(--agri-text) 22%, transparent);
+  transition-duration: .38s; transition-timing-function: var(--agl-ease-spring);
+}
+/* Viên pill đảm nhận nền + viền; mục đang chọn chỉ giữ chữ đậm (thắng quy tắc !important của agrilink-gray.css mục 13). */
+.agrilink-shell .agl-pill-bar.has-pill > .active,
+.agrilink-shell .community-desktop .agl-pill-bar.has-pill > .active,
+.agrilink-shell .card .agl-pill-bar.has-pill > .active { background: transparent !important; box-shadow: none !important; }
+/* Trong khung trắng (danh sách, bảng sổ xuống) viên pill nền xám nhạt như trước. */
+.agrilink-shell .card .matching-segment.agl-pill-bar > .agri-tab-pill,
+.agrilink-shell .inbox-filter.agl-pill-bar > .agri-tab-pill,
+.agrilink-shell .alh-drop-filter.agl-pill-bar > .agri-tab-pill { background: var(--agri-bg); }
+
+/* ---------- M6 Tab: gạch chân lướt theo tab; nội dung trượt vào ---------- */
+.agrilink-shell .agl-underline { position: relative; }
+.agrilink-shell .agl-underline > .agri-tab-pill { background: transparent; border-radius: 0; transition-duration: .35s; transition-timing-function: var(--agl-ease-out); }
+.agrilink-shell .agl-underline > .agri-tab-pill::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--agri-text); }
+.agrilink-shell .alh-tabs.has-pill .alh-tab.active::after { display: none; }
+.agrilink-shell .alh-tabs.agl-underline > .agri-tab-pill::after { background: var(--agri-primary); }
+.agrilink-shell .nav-tabs.agl-underline > .agri-tab-pill::after { left: 0; right: 0; }
+.agrilink-shell .nav-tabs.agl-underline.has-pill .nav-link.active { border-bottom-color: transparent !important; }
+.agl-tab-panel { animation: agl-panel-in .3s var(--agl-ease-out) backwards; }
+@keyframes agl-panel-in { from { opacity: 0; transform: translateX(12px); } }
+
+/* ---------- M7 Thanh bên: vòng icon phóng + nghiêng khi rê, nảy khi được chọn ---------- */
+.agrilink-shell .agrilink-dealer-link i,
+.agrilink-shell .community-desktop .cm-left nav a > svg,
+.agrilink-shell .community-desktop .cm-topic-nav a .cm-topic-tile { transition: transform .25s var(--agl-ease-spring), box-shadow .25s, background .15s, color .15s; }
+.agrilink-shell .agrilink-dealer-link:not(.active):hover i,
+.agrilink-shell .community-desktop .cm-left nav a:not(.active):hover > svg,
+.agrilink-shell .community-desktop .cm-topic-nav a:not(.active):hover .cm-topic-tile { transform: scale(1.08) rotate(-6deg); }
+.agrilink-shell .agrilink-dealer-link.active i,
+.agrilink-shell .community-desktop .cm-left nav a.active > svg,
+.agrilink-shell .community-desktop .cm-topic-nav a.active .cm-topic-tile { animation: agl-icon-on .4s var(--agl-ease-spring); }
+@keyframes agl-icon-on { 0% { transform: scale(.8); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+
+/* ---------- M8 Bảng sổ xuống ở header: phóng ra từ góc nút, mục hiện lần lượt ----------
+   Dùng scale/translate riêng lẻ để không đụng transform mà Popper gắn cho menu Bootstrap. */
+.agrilink-shell .agrilink-notify-panel,
+.agrilink-shell .alh-menu-panel,
+.agrilink-shell .alh .dropdown-menu.show { transform-origin: top right; animation: agl-drop-in .25s var(--agl-ease-spring) backwards; }
+@keyframes agl-drop-in { from { opacity: 0; scale: .92; translate: 0 -6px; } }
+.agrilink-shell .alh-menu-panel .alh-menu-item,
+.agrilink-shell .alh .dropdown-menu.show > li { animation: agl-item-in .3s var(--agl-ease-out) backwards; animation-delay: calc(40ms + var(--i, 0) * 25ms); }
+.agrilink-shell .alh .dropdown-menu.show > li:nth-child(2) { --i: 1; }
+.agrilink-shell .alh .dropdown-menu.show > li:nth-child(3) { --i: 2; }
+.agrilink-shell .alh .dropdown-menu.show > li:nth-child(4) { --i: 3; }
+.agrilink-shell .alh .dropdown-menu.show > li:nth-child(n+5) { --i: 4; }
+@keyframes agl-item-in { from { opacity: 0; translate: 0 4px; } }
+.agrilink-shell .alh-circle, .agrilink-shell .alh-right .agrilink-notify-button { transition: background .15s, color .15s, transform .15s var(--agl-ease-out); }
+.agrilink-shell .alh-circle:active, .agrilink-shell .alh-right .agrilink-notify-button:active { transform: scale(.92); }
+
+/* ---------- M9 Chuông: lắc một lần khi có thông báo mới, số đỏ bật lên ---------- */
+.agrilink-notify-button i.agl-ring { animation: agl-bell .8s ease-in-out; transform-origin: 50% 10%; }
+@keyframes agl-bell { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(16deg); } 30% { transform: rotate(-14deg); } 45% { transform: rotate(10deg); } 60% { transform: rotate(-6deg); } 75% { transform: rotate(3deg); } }
+.agrilink-notify-button .badge.agl-pop { animation: agl-pop .45s var(--agl-ease-spring); }
+
+/* ---------- M10 Nút "Tôi muốn bán / mua": vệt sáng lướt, icon lấp lánh, hút nhẹ theo chuột ---------- */
+.agrilink-shell .alh-cta { position: relative; overflow: hidden; isolation: isolate;
+  transition: color .2s, background-color .2s, border-color .2s, box-shadow .2s, transform 80ms ease-out, translate .25s var(--agl-ease-out); }
+.agrilink-shell .alh-cta::after { content: ""; position: absolute; z-index: -1; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .35), transparent); transform: skewX(-20deg); transition: left .6s var(--agl-ease-out); pointer-events: none; }
+.agrilink-shell .alh-cta:hover { box-shadow: 0 6px 16px rgba(var(--agri-primary-rgb, 21, 128, 61), .35); }
+.agrilink-shell .alh-cta:hover::after { left: 120%; }
+.agrilink-shell .alh-cta i { transition: transform .3s var(--agl-ease-spring); }
+.agrilink-shell .alh-cta:hover i { transform: rotate(18deg) scale(1.15); }
+
+/* ---------- M11 Thẻ đại lý: viền xanh sáng theo con trỏ, thẻ nổi lên ---------- */
+.agl-spot { --x: 50%; --y: 50%; position: relative; transition: translate .25s var(--agl-ease-out), box-shadow .25s; }
+.agl-spot::before, .agl-spot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: 0; transition: opacity .25s; pointer-events: none; }
+.agl-spot::before { background: radial-gradient(220px circle at var(--x) var(--y), rgba(var(--agri-primary-rgb, 21, 128, 61), .07), transparent 70%); }
+.agl-spot::after { padding: 1px; background: radial-gradient(180px circle at var(--x) var(--y), rgba(var(--agri-primary-rgb, 21, 128, 61), .6), transparent 65%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.agl-spot:hover { translate: 0 -2px; box-shadow: 0 8px 20px rgba(0, 0, 0, .10) !important; }
+.agl-spot:hover::before, .agl-spot:hover::after { opacity: 1; }
+
+/* ---------- M13 Tích vàng: nghiêng nhẹ, vệt sáng lướt, nhãn "Đại lý đã xác minh" ---------- */
+.verified-badge { position: relative; cursor: help; }
+.verified-badge svg { display: block; transition: transform .35s var(--agl-ease-spring); }
+.verified-badge-shine { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; pointer-events: none; }
+.verified-badge-shine::after { content: ""; position: absolute; top: -20%; left: -80%; width: 45%; height: 140%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .85), transparent); transform: skewX(-20deg); }
+.verified-badge:hover svg { transform: scale(1.15) rotate(-8deg); }
+.verified-badge:hover .verified-badge-shine::after { animation: agl-shine .7s var(--agl-ease-out); }
+@keyframes agl-shine { to { left: 130%; } }
+.verified-badge-tip { position: absolute; z-index: 20; bottom: calc(100% + 8px); left: 50%; white-space: nowrap; padding: 5px 9px; border-radius: 6px; background: #242526; color: #fff; font-size: 12px; font-weight: 600; line-height: 1.3; letter-spacing: 0; text-transform: none; opacity: 0; transform: translate(-50%, 4px) scale(.95); transition: opacity .18s, transform .25s var(--agl-ease-spring); pointer-events: none; }
+.agrilink-shell[data-agl-theme="dark"] .verified-badge-tip { background: #E4E6EB; color: #050505; }
+.verified-badge:hover .verified-badge-tip { opacity: 1; transform: translate(-50%, 0) scale(1); }
+
+/* ---------- M14 Giá nông sản: dòng hiện lần lượt, ô tăng/giảm loé khi đổi tab ---------- */
+.cm-price-rows > .cm-price-row:first-child { border-top: 0; }
+.cm-price-rows.is-swap > .cm-price-row { animation: agl-rise .35s var(--agl-ease-out) backwards; animation-delay: calc(var(--i, 0) * 45ms); }
+.cm-price-change { border-radius: 6px; padding: 1px 6px; justify-self: end; }
+.cm-price-rows.is-swap .cm-price-change.up { animation: agl-flash-up 1.2s var(--agl-ease-out) .3s; }
+.cm-price-rows.is-swap .cm-price-change.down { animation: agl-flash-down 1.2s var(--agl-ease-out) .3s; }
+@keyframes agl-flash-up { 0% { background: rgba(21, 128, 61, .22); } 100% { background: transparent; } }
+@keyframes agl-flash-down { 0% { background: rgba(228, 30, 63, .20); } 100% { background: transparent; } }
+
+/* ---------- M15 Toast: góc dưới trái như Facebook, thanh thời gian, rê chuột thì dừng ---------- */
+.agrilink-shell .agri-toast-stack { top: auto; right: auto; bottom: 16px; left: 16px; }
+.agrilink-shell .agri-toast { position: relative; overflow: hidden; animation-name: agl-toast-in; animation-duration: .45s; animation-timing-function: var(--agl-ease-spring); }
+.agrilink-shell .agri-toast.is-leaving { animation: none; transform: translateX(-12px); }
+@keyframes agl-toast-in { from { opacity: 0; transform: translateX(-24px) scale(.96); } }
+.agri-toast-bar { display: none; }
+.agrilink-shell .agri-toast-bar { display: block; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--agri-info); transform-origin: left; animation: agl-toast-bar var(--toast-life, 5000ms) linear forwards; }
+.agrilink-shell .agri-toast--success .agri-toast-bar { background: var(--agri-success); }
+.agrilink-shell .agri-toast--error .agri-toast-bar { background: var(--agri-error); }
+.agrilink-shell .agri-toast--warning .agri-toast-bar { background: var(--agri-warning); }
+.agrilink-shell .agri-toast-bar.is-held { animation: none; }
+@keyframes agl-toast-bar { to { transform: scaleX(0); } }
+
+/* ---------- M16 Nút gửi bình luận: vòng xoay khi gửi, dấu tích xanh khi xong ---------- */
+.agl-send { display: inline-grid !important; place-items: center; }
+.agl-send > * { grid-area: 1 / 1; transition: opacity .2s, transform .3s var(--agl-ease-spring); }
+.agl-send .agl-send-spin { width: 16px; height: 16px; border: 2.5px solid color-mix(in srgb, currentColor 35%, transparent); border-top-color: currentColor; border-radius: 50%; opacity: 0; }
+.agl-send .agl-send-ok { opacity: 0; transform: scale(.3); color: var(--agri-success, #15803D); }
+.agl-send.is-busy .agl-send-icon, .agl-send.is-sent .agl-send-icon { opacity: 0; transform: scale(.6); }
+.agl-send.is-busy .agl-send-spin { opacity: 1; animation: agl-spin .7s linear infinite; }
+.agl-send.is-sent .agl-send-ok { opacity: 1; transform: none; }
+.cm-modal-field button.agl-send.is-sent:disabled, .cm-modal-field button.agl-send.is-busy:disabled { opacity: 1; color: var(--agri-primary); }
+@keyframes agl-spin { to { transform: rotate(360deg); } }
+.cm-modal-field { transition: box-shadow .2s; }
+.cm-modal-field:focus-within { box-shadow: 0 0 0 2px rgba(var(--agri-primary-rgb, 21, 128, 61), .35); }
+
+/* ---------- Giảm chuyển động (Windows/macOS): tắt hết ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .agrilink-shell *, .agrilink-shell *::before, .agrilink-shell *::after, .cm-post-modal::backdrop {
+    animation-duration: 1ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important; transition-duration: 1ms !important;
+  }
+  .agrilink-shell .alh-cta:hover i, .agrilink-shell .agl-spot:hover, .verified-badge:hover svg { transform: none; translate: none; }
+}

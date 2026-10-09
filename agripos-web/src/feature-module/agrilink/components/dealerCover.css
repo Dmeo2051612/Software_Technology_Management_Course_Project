@@ -1,0 +1,24 @@
+.dealer-cover { position: relative; --dc-banner-h: 112px; --dc-logo: 64px; padding-bottom: calc(var(--dc-logo) / 2); }
+.dealer-cover-hero { --dc-banner-h: 220px; --dc-logo: 96px; }
+.dealer-cover-banner {
+  position: relative; height: var(--dc-banner-h); overflow: hidden;
+  background: linear-gradient(135deg, var(--agri-primary-100, #C6E7D0), var(--agri-primary-50, #E8F5EC));
+}
+.dealer-cover-card .dealer-cover-banner { border-radius: inherit; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.dealer-cover-hero .dealer-cover-banner { border-radius: var(--agri-radius-lg, 12px) var(--agri-radius-lg, 12px) 0 0; }
+.dealer-cover-banner > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dealer-cover-logo {
+  position: absolute; left: 20px; bottom: 0; width: var(--dc-logo); height: var(--dc-logo);
+  display: grid; place-items: center; overflow: hidden; border-radius: 50%;
+  border: 3px solid var(--agri-surface); background: var(--agri-surface); color: var(--agri-primary);
+  box-shadow: var(--agri-shadow-sm); font-size: calc(var(--dc-logo) * .45);
+}
+.dealer-cover-logo > img { width: 100%; height: 100%; object-fit: cover; }
+.dealer-cover-hero .dealer-cover-logo { left: 24px; border-width: 4px; }
+/* Nút đặt trên ảnh bìa (trang hồ sơ đại lý). */
+.dealer-cover-action { position: absolute; right: 12px; bottom: 12px; }
+/* Thẻ đại lý: phóng nhẹ ảnh bìa khi rê chuột. */
+.dealer-cover-card .dealer-cover-banner > img { transition: transform .4s ease; }
+a:hover > .dealer-cover-card .dealer-cover-banner > img { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) { a:hover > .dealer-cover-card .dealer-cover-banner > img { transform: none; } }
+@media (max-width: 575px) { .dealer-cover-hero { --dc-banner-h: 150px; --dc-logo: 76px; } }

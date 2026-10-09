@@ -1,0 +1,44 @@
+.agrilink-drawer-backdrop { position: fixed; inset: 0; z-index: 1050; display: flex; justify-content: flex-end; background: var(--agri-overlay); }
+.agrilink-drawer { width: min(520px, 100vw); height: 100%; overflow-y: auto; padding: 28px; background: var(--agri-surface); box-shadow: var(--agri-shadow-lg); }
+.agrilink-drawer-fields { display: grid; gap: 14px; }
+.agrilink-drawer-fields .form-label { display: block; margin: 0; font-weight: 500; }
+.agrilink-drawer-fields .form-control, .agrilink-drawer-fields .form-select { margin-top: 6px; }
+.agrilink-drawer-actions { display: grid; gap: 10px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--agri-border); }
+.agrilink-price-cell { min-width: 270px; }
+.agrilink-price-cell .form-control { width: 130px; }
+.agrilink-province-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); max-height: 170px; overflow-y: auto; padding: 12px; border: 1px solid var(--agri-border); border-radius: var(--agri-radius-md); }
+.agrilink-week-grid { width: auto; min-width: 660px; }
+.agrilink-week-grid th, .agrilink-week-grid td { padding: 5px 7px; white-space: nowrap; }
+.agrilink-week-grid .form-control { width: 64px; height: 32px; margin: auto; padding: 3px 5px; text-align: center; }
+.agrilink-rating-label { width: 170px; flex: none; }
+@media (max-width: 575px) { .agrilink-drawer { padding: 20px; } .agrilink-rating-label { width: 110px; } }
+
+/* Sản phẩm đăng bán */
+.listing-note { font-size: 13px; color: var(--agri-text-secondary); background: var(--agri-bg); border-radius: var(--agri-radius-md); padding: 10px 12px; }
+.listing-images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+.listing-image { position: relative; margin: 0; border: 1px solid var(--agri-border); border-radius: var(--agri-radius-md); overflow: hidden; background: var(--agri-bg); }
+.listing-image.cover { border-color: var(--agri-primary); }
+.listing-image img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.listing-image figcaption { display: flex; justify-content: space-between; align-items: center; gap: 4px; padding: 4px 6px; font-size: 12px; background: var(--agri-surface); }
+.listing-image figcaption button { border: 0; background: none; padding: 0; color: var(--agri-primary); font-size: 12px; }
+.listing-image figcaption button[aria-label] { color: var(--agri-error); font-size: 14px; }
+.listing-image-add { aspect-ratio: 1; display: grid; place-content: center; justify-items: center; gap: 4px; border: 1px dashed var(--agri-border); border-radius: var(--agri-radius-md); background: var(--agri-surface); color: var(--agri-text-secondary); font-size: 12px; }
+.listing-image-add i { font-size: 22px; }
+.listing-sale { padding: 12px; border: 1px solid var(--agri-border); border-radius: var(--agri-radius-md); }
+.listing-sale-fields { display: flex; gap: 10px; margin-top: 10px; }
+.listing-sale-fields .form-label { flex: 1; }
+.listing-product { display: flex; align-items: center; gap: 12px; min-width: 260px; }
+.listing-product img, .listing-product .listing-thumb-empty { width: 48px; height: 48px; flex: none; border-radius: var(--agri-radius-md); object-fit: cover; background: var(--agri-bg); }
+.listing-product .listing-thumb-empty { display: grid; place-items: center; color: var(--agri-text-muted); }
+.listing-product small { display: block; color: var(--agri-text-secondary); }
+.listing-price del { color: var(--agri-text-muted); font-size: 12px; margin-left: 6px; }
+.listing-price small { display: block; color: var(--agri-error); font-size: 12px; }
+.voucher-progress { width: 110px; height: 6px; margin-top: 5px; overflow: hidden; border-radius: 999px; background: var(--agri-bg); }
+.voucher-progress i { display: block; height: 100%; background: var(--agri-accent); }
+.voucher-state { display: inline-block; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.voucher-state.is-success { background: var(--agri-success-50); color: var(--agri-success-700); border-color: var(--agri-success-100); }
+.voucher-state.is-info { background: var(--agri-primary-50); color: var(--agri-primary-700); border-color: var(--agri-primary-100); }
+.voucher-state.is-warning { background: var(--agri-warning-50); color: var(--agri-warning-700); border-color: var(--agri-warning-100); }
+.voucher-state.is-neutral { background: var(--agri-bg); color: var(--agri-text-secondary); border-color: var(--agri-border); }
+.agrilink-drawer-fields .input-group { margin-top: 6px; }
+.agrilink-drawer-fields .input-group .form-control { margin-top: 0; }

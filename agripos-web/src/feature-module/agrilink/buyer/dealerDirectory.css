@@ -1,0 +1,71 @@
+.dealer-crop-filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dealer-crop-filter-label {
+  font-size: 13px;
+  color: var(--agri-text-secondary);
+  margin-right: 4px;
+}
+.dealer-crop-chip {
+  border: 1px solid var(--agri-border);
+  background: var(--agri-surface);
+  color: var(--agri-text);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.dealer-crop-chip:hover { border-color: var(--agri-primary); color: var(--agri-primary); }
+.dealer-crop-chip.active {
+  background: var(--agri-primary);
+  border-color: var(--agri-primary);
+  color: var(--agri-surface);
+}
+.dealer-crop-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+}
+.dealer-crop-tags-label { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--agri-text-secondary); }
+.dealer-crop-tags-label > i { color: var(--agri-primary); font-size: 16px; }
+.dealer-crop-tag {
+  background: var(--agri-primary-50);
+  color: var(--agri-primary);
+  border: 1px solid color-mix(in srgb, var(--agri-primary) 25%, transparent);
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.dealer-crop-tag.match { background: var(--agri-primary); color: var(--agri-surface); }
+.dealer-crop-tag { display: inline-flex; align-items: center; gap: 5px; }
+.dealer-crop-tag > img { width: 18px; height: 18px; margin-left: -6px; border-radius: 50%; object-fit: cover; }
+.dealer-search { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 12px; }
+.dealer-search-input, .dealer-search-province { position: relative; }
+.dealer-search-input > i, .dealer-search-province > i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--agri-text-secondary); font-size: 18px; pointer-events: none; z-index: 1; }
+.dealer-search-input .form-control, .dealer-search-province .form-select { padding-left: 40px; }
+@media (max-width: 767px) { .dealer-search { grid-template-columns: 1fr; } }
+
+/* Khung bộ lọc Khám phá đại lý: tìm + tỉnh, nhu cầu (mua / bán), tiện ích, nông sản. */
+.dealer-filter.card { gap: 14px; padding: 18px 20px; }
+.dealer-filter .dealer-search { margin: 0; }
+.dealer-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.dealer-filter-label { min-width: 70px; font-size: 13px; font-weight: 600; color: var(--agri-text-secondary); }
+.dealer-filter-divider { width: 1px; height: 24px; margin: 0 6px; background: var(--agri-border); }
+.dealer-mode { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--agri-bg); }
+.dealer-mode > button { display: inline-flex; align-items: center; gap: 6px; border: 0; border-radius: 999px; background: transparent; padding: 6px 14px; font-size: 14px; font-weight: 500; color: var(--agri-text); transition: color .25s; }
+.dealer-mode > button.active { color: #fff; font-weight: 600; }
+.agrilink-shell .dealer-mode.agl-pill-bar > .agri-tab-pill { background: var(--agri-primary); box-shadow: 0 2px 6px rgba(var(--agri-primary-rgb), .3); }
+.dealer-toggle { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--agri-border); border-radius: 999px; background: var(--agri-surface); padding: 5px 12px; font-size: 13px; font-weight: 500; color: var(--agri-text); transition: background .15s, border-color .15s, color .15s; }
+.dealer-toggle:hover { border-color: var(--agri-primary); }
+.dealer-toggle.active { background: var(--agri-primary-50); border-color: var(--agri-primary); color: var(--agri-primary); font-weight: 600; }
+.dealer-filter .dealer-crop-chip { display: inline-flex; align-items: center; gap: 6px; }
+.dealer-filter .dealer-crop-chip > img { width: 22px; height: 22px; margin-left: -6px; border-radius: 50%; object-fit: cover; }
+.dealer-result-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: -8px 2px 14px; font-size: 14px; color: var(--agri-text-secondary); }
+.dealer-result-bar strong { color: var(--agri-text); }
+@media (max-width: 767px) { .dealer-filter-divider { display: none; } .dealer-filter-label { min-width: 0; width: 100%; } }

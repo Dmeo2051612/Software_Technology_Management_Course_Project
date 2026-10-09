@@ -1,0 +1,5 @@
+.reason-note { --rn: var(--tone-slate, #5B6B7B); display: flex; gap: 10px; align-items: flex-start; margin: 12px 0; padding: 12px 14px; border-radius: var(--agri-radius-md, 8px); border-left: 4px solid var(--rn); background: color-mix(in srgb, var(--rn) 8%, var(--agri-surface)); }
+.reason-note-reject { --rn: var(--agri-error); }
+.reason-note > i { flex: none; font-size: 20px; color: var(--rn); line-height: 1.2; }
+.reason-note strong { display: block; font-size: 13px; color: var(--agri-text-secondary); font-weight: 600; }
+.reason-note span { display: block; color: var(--agri-text); font-size: 15px; }

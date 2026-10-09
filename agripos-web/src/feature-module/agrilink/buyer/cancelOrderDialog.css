@@ -1,0 +1,5 @@
+/* Hộp thoại huỷ đơn (người mua). */
+.cancel-reasons { display: flex; flex-wrap: wrap; gap: 8px; }
+.cancel-reason { border: 1px solid var(--agri-border); border-radius: 999px; background: var(--agri-surface); padding: 6px 12px; font-size: 13px; color: var(--agri-text); transition: background .15s, border-color .15s, color .15s; }
+.cancel-reason:hover { border-color: var(--agri-error); }
+.cancel-reason.active { background: color-mix(in srgb, var(--agri-error) 10%, var(--agri-surface)); border-color: var(--agri-error); color: var(--agri-error); font-weight: 600; }

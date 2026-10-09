@@ -1,0 +1,31 @@
+/* Thẻ voucher dạng vé — dùng ở kênh đại lý, gian hàng và giỏ hàng. */
+.voucher-card { display: flex; min-width: 0; overflow: hidden; background: var(--agri-surface); border: 1px solid var(--agri-border); border-radius: var(--agri-radius-lg); }
+.voucher-card.is-selected { border-color: var(--agri-primary); box-shadow: 0 0 0 2px var(--agri-primary-100); }
+.voucher-card.is-dim .voucher-stub { background: var(--agri-text-muted); }
+.voucher-card.is-dim .voucher-title, .voucher-card.is-dim .voucher-line { color: var(--agri-text-muted); }
+.voucher-stub { position: relative; flex: none; width: 104px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 12px 8px; background: var(--agri-accent, #16A34A); color: #fff; text-align: center; }
+.voucher-stub::after { content: ""; position: absolute; top: 8px; right: -1px; bottom: 8px; border-right: 2px dashed rgba(255, 255, 255, 0.55); }
+.voucher-stub strong { font-size: 20px; line-height: 1.1; }
+.voucher-stub small { font-size: 12px; opacity: 0.9; }
+.voucher-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; }
+.voucher-title { font-size: 14px; color: var(--agri-text); }
+.voucher-line { font-size: 12px; color: var(--agri-text-secondary); display: inline-flex; align-items: center; gap: 4px; }
+.voucher-line .is-good { color: var(--agri-accent-700); }
+.voucher-line .is-warn { color: var(--agri-warning-700); }
+.voucher-action { display: flex; align-items: center; padding-right: 12px; }
+.voucher-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.voucher-radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--agri-border); }
+.voucher-radio.is-on { border: 5px solid var(--agri-primary); }
+/* Giỏ hàng */
+.cart-voucher-row { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 12px 14px; border: 1px solid var(--agri-accent-100); border-radius: var(--agri-radius-md); background: var(--agri-accent-50); }
+.cart-voucher-row > .ti { font-size: 20px; color: var(--agri-accent-700); }
+/* Điện thoại: nút "Đổi voucher" xuống dòng để tên voucher không bị bóp thành cột hẹp. */
+@media (max-width: 575px) { .cart-voucher-row { flex-wrap: wrap; } .cart-voucher-row > .btn { margin-left: 32px; } }
+.cart-summary { display: grid; gap: 6px; max-width: 360px; margin: 16px 0 16px auto; }
+.cart-summary > div { display: flex; justify-content: space-between; gap: 16px; }
+.cart-summary dt { font-weight: 400; color: var(--agri-text-secondary); }
+.cart-summary dd { margin: 0; }
+.cart-summary .is-discount dt, .cart-summary .is-discount dd { color: var(--agri-accent-700); }
+.cart-summary .is-total { padding-top: 8px; border-top: 1px solid var(--agri-border); }
+.cart-summary .is-total dt { font-weight: 600; color: var(--agri-text); }
+.cart-summary .is-total dd { font-size: 18px; color: var(--agri-primary); }

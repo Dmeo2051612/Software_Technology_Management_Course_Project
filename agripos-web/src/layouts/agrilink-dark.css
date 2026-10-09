@@ -1,0 +1,100 @@
+/* ===== Chế độ tối AgriLink =====
+   Bảng màu tối của Facebook (nền #18191A, thẻ #242526, chữ #E4E6EB / #B0B3B8),
+   thay xanh dương Facebook bằng xanh lá logo. Bật bằng nút "Chế độ tối" trong
+   menu tài khoản; AgriPOS không bị ảnh hưởng. */
+.agrilink-shell[data-agl-theme="dark"],
+body.agl-dark .modal,
+body.agl-dark .modal-backdrop + .modal {
+  color-scheme: dark;
+  --agri-bg: #18191A;
+  --agri-surface: #242526;
+  --agri-border: #3E4042;
+  --agri-text: #E4E6EB;
+  --agri-text-secondary: #B0B3B8;
+  --agri-text-muted: #8A8D91;
+  --agri-overlay: rgba(0, 0, 0, 0.6);
+  --ink: #E4E6EB; --ink-80: #E4E6EB; --ink-48: #B0B3B8; --ink-muted: #8A8D91;
+  --canvas: #242526; --parch: #18191A; --pearl: #242526;
+
+  --agri-primary: #22C55E; --agri-primary-light: #4ADE80; --agri-primary-dark: #16A34A; --agri-primary-rgb: 34, 197, 94;
+  --agri-primary-50: #1D3A28; --agri-primary-100: #285C3A; --agri-primary-600: #16A34A; --agri-primary-700: #4ADE80;
+  --p: #22C55E; --p-light: #4ADE80; --p-dark: #16A34A; --p-50: #1D3A28; --p-100: #285C3A;
+
+  --agri-accent: #F59E0B; --agri-accent-50: #3A2C0E; --agri-accent-100: #5A4210; --agri-accent-700: #FBBF24;
+  --agri-success: #22C55E; --agri-success-50: #1D3A28; --agri-success-100: #285C3A; --agri-success-700: #4ADE80;
+  --agri-warning: #F59E0B; --agri-warning-50: #3A2C0E; --agri-warning-100: #5A4210; --agri-warning-700: #FBBF24;
+  --agri-error: #F0445A; --agri-error-50: #3B1D20; --agri-error-100: #5C262B; --agri-error-700: #FCA5A5;
+  --agri-info: #60A5FA;
+
+  --agl-icon-bg: #3A3B3C; --agl-icon-bg-hover: #4E4F50; --agl-hover: rgba(255, 255, 255, 0.1); --agl-on-primary: #052E16; --agl-field: rgba(255, 255, 255, 0.08);
+  --cm-surface: #242526; --cm-soft: #3A3B3C; --cm-line: #3E4042;
+
+  --bs-body-bg: #242526; --bs-body-color: #E4E6EB; --bs-emphasis-color: #E4E6EB;
+  --bs-secondary-color: #B0B3B8; --bs-tertiary-color: #8A8D91;
+  --bs-secondary-bg: #3A3B3C; --bs-tertiary-bg: #303132; --bs-border-color: #3E4042;
+  --bs-primary: #22C55E; --bs-primary-rgb: 34, 197, 94;
+  --bs-link-color: #4ADE80; --bs-link-color-rgb: 74, 222, 128; --bs-link-hover-color: #86EFAC; --bs-link-hover-color-rgb: 134, 239, 172;
+}
+.agrilink-shell[data-agl-theme="dark"] { background: var(--agri-bg); color: var(--agri-text); }
+
+/* Chữ trắng trên xanh lá sáng khó đọc → chữ xanh rất đậm (như bản C của mockup 47). */
+.agrilink-shell[data-agl-theme="dark"] .btn-primary,
+.agrilink-shell[data-agl-theme="dark"] .alh .agrilink-avatar-button,
+.agrilink-shell[data-agl-theme="dark"] .badge.bg-primary { color: #052E16 !important; }
+.agrilink-shell[data-agl-theme="dark"] .btn-primary:hover { background: var(--agri-primary-light); color: #052E16; }
+.agrilink-shell[data-agl-theme="dark"] .btn-accent,
+.agrilink-shell[data-agl-theme="dark"] .badge.bg-accent,
+.agrilink-shell[data-agl-theme="dark"] .voucher-stub { color: #1F1300; }
+
+/* Tiện ích Bootstrap đặt nền sáng cứng. */
+.agrilink-shell[data-agl-theme="dark"] .bg-white,
+.agrilink-shell[data-agl-theme="dark"] .card,
+.agrilink-shell[data-agl-theme="dark"] .list-group-item { background-color: var(--agri-surface) !important; color: var(--agri-text); border-color: var(--agri-border); }
+.agrilink-shell[data-agl-theme="dark"] .bg-light { background-color: #3A3B3C !important; color: var(--agri-text) !important; border-color: var(--agri-border) !important; }
+.agrilink-shell[data-agl-theme="dark"] .border,
+.agrilink-shell[data-agl-theme="dark"] .border-bottom,
+.agrilink-shell[data-agl-theme="dark"] .border-top { border-color: var(--agri-border) !important; }
+.agrilink-shell[data-agl-theme="dark"] :is(.form-control, .form-select, textarea, input:not([type="checkbox"]):not([type="radio"])) {
+  background-color: #3A3B3C; color: var(--agri-text); border-color: var(--agri-border);
+}
+.agrilink-shell[data-agl-theme="dark"] :is(.form-control, .form-select, textarea, input)::placeholder { color: #8A8D91; }
+.agrilink-shell[data-agl-theme="dark"] .table { --bs-table-bg: transparent; --bs-table-color: var(--agri-text); --bs-table-border-color: var(--agri-border); --bs-table-hover-bg: #303132; }
+.agrilink-shell[data-agl-theme="dark"] .dropdown-menu { --bs-dropdown-bg: #242526; --bs-dropdown-link-color: var(--agri-text); --bs-dropdown-link-hover-bg: #3A3B3C; --bs-dropdown-link-hover-color: var(--agri-text); --bs-dropdown-border-color: var(--agri-border); }
+.agrilink-shell[data-agl-theme="dark"] .alh-tip { background: #E4E6EB; color: #050505; }
+.agrilink-shell[data-agl-theme="dark"] .alh { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
+.agrilink-shell[data-agl-theme="dark"] img { opacity: 0.95; }
+
+/* Hộp thoại Bootstrap nằm ngoài khung AgriLink. */
+body.agl-dark .modal-content { background: #242526; color: #E4E6EB; border-color: #3E4042; }
+body.agl-dark .modal-header, body.agl-dark .modal-footer { border-color: #3E4042; }
+body.agl-dark .modal .form-control, body.agl-dark .modal .form-select, body.agl-dark .modal textarea { background: #3A3B3C; color: #E4E6EB; border-color: #3E4042; }
+body.agl-dark .modal .text-muted { color: #B0B3B8 !important; }
+
+/* Công tắc Sáng/Tối trong menu tài khoản. */
+.agl-theme-item { display: flex !important; align-items: center; justify-content: space-between; gap: 16px; }
+.agl-switch { position: relative; flex: none; width: 34px; height: 20px; border-radius: 999px; background: #CED0D4; transition: background 0.15s; }
+.agl-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform 0.15s; }
+.agl-switch.is-on { background: var(--agri-primary); }
+.agl-switch.is-on::after { transform: translateX(14px); }
+
+/* Theme gốc đặt aside { background:#fff } (nạp sau, thắng :where()); bản tối dùng nền thẻ tối
+   tương ứng với nền trắng của bản sáng. */
+.agrilink-shell[data-agl-theme="dark"] aside { background-color: var(--agri-surface); }
+
+/* Cộng đồng: avatar chữ cái, nhãn loại bài, nút tìm kiếm. */
+.agrilink-shell[data-agl-theme="dark"] .cm-button.primary { color: #052E16; }
+
+/* Nhãn trạng thái: nền đậm + chữ sáng cùng tông (chữ trắng trên màu sáng không đủ tương phản). */
+.agrilink-shell[data-agl-theme="dark"] .badge.bg-success { background: #1D3A28 !important; color: #4ADE80 !important; }
+.agrilink-shell[data-agl-theme="dark"] .badge.bg-info { background: #1E2A3B !important; color: #93C5FD !important; }
+.agrilink-shell[data-agl-theme="dark"] .badge.bg-warning { background: #3A2C0E !important; color: #FBBF24 !important; }
+.agrilink-shell[data-agl-theme="dark"] .badge.bg-danger { background: #3B1D20 !important; color: #FCA5A5 !important; }
+.agrilink-shell[data-agl-theme="dark"] .badge.bg-secondary { background: #3A3B3C !important; color: #E4E6EB !important; }
+.agrilink-shell[data-agl-theme="dark"] .btn-light { background: #3A3B3C; border-color: #3A3B3C; color: var(--agri-text); }
+/* Theme gốc tô nền trắng cho ô bảng; bảng nằm trong thẻ nên để trong suốt. */
+.agrilink-shell[data-agl-theme="dark"] :is(th, td) { background-color: transparent !important; color: inherit; border-color: var(--agri-border) !important; }
+.agrilink-shell[data-agl-theme="dark"] thead th { color: var(--agri-text-secondary); }
+/* Bootstrap tối đảo màu nút đóng thành chấm trắng; giữ kiểu nút đóng của theme. */
+body.agl-dark .btn-close { filter: none; }
+body.agl-dark .modal .btn-primary { background: #22C55E; border-color: #22C55E; color: #052E16 !important; }
+body.agl-dark .modal .btn-outline-secondary { color: #E4E6EB; border-color: #3E4042; }

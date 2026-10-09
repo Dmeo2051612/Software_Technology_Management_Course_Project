@@ -1,0 +1,288 @@
+/* ===== Bảng màu xám – trắng cho mọi trang AgriLink (mockup 51, duyệt 2026-09-29) =====
+   Cùng quy tắc với Cộng đồng (mockup 50 bản E, xám #84858A theo mẫu chủ dự án):
+   - Nền trang xám #F0F2F5, thẻ trắng không viền, bóng nhẹ (như Facebook).
+   - Bộ lọc và mục đang mở ở cột menu: kiểu thanh menu AgriPOS — mục thường trong suốt chữ đen,
+     đang chọn = viên trắng nổi, chữ xám #84858A đậm, viền mờ xám.
+   - Icon, avatar, thẻ cây trồng = vòng/pill xám nhạt, chữ đen; icon mục đang mở = tròn xám đậm.
+   - Xanh lá chỉ còn ở logo, nút hành động chính, công tắc bật, liên kết "Xem tất cả".
+   - Nhãn trạng thái đơn: nền nhạt + chữ màu thay cho khối màu đặc.
+   - Khuyến mãi, giảm giá, voucher, tích xác minh giữ màu riêng. */
+.agrilink-shell { --agl-sel: #84858A; }
+
+/* 1. Nền xám, thẻ trắng không viền */
+.agrilink-shell .agrilink-main { background: var(--agri-bg); }
+.agrilink-shell.preview-scope .card,
+.agrilink-shell .dealer-card, .agrilink-shell .storefront-product, .agrilink-shell .matching-card {
+  border: 0 !important; border-radius: 12px; background: var(--agri-surface); box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+.agrilink-shell .form-control, .agrilink-shell .form-select { border-color: var(--agri-border); }
+
+/* 2. Kênh đại lý: menu trái kiểu cột trái Cộng đồng */
+.agrilink-shell .alh-channel { background: var(--agl-icon-bg, #E4E6EB); color: var(--agri-text); }
+.agrilink-shell.preview-scope .agrilink-dealer-link { gap: 10px; padding: 6px 8px; color: var(--agri-text); font-weight: 500; }
+.agrilink-shell .agrilink-dealer-link i { flex: none; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--agl-icon-bg, #E4E6EB); color: var(--agri-text); font-size: 18px; }
+.agrilink-shell.preview-scope .agrilink-dealer-link:hover { background: var(--agl-hover, rgba(0, 0, 0, .05)); color: var(--agri-text); }
+.agrilink-shell.preview-scope .agrilink-dealer-link.active { background: var(--agl-hover, rgba(0, 0, 0, .05)); color: var(--agri-text); font-weight: 600; }
+.agrilink-shell .agrilink-dealer-link.active i { background: var(--agl-sel); color: #fff; }
+.agrilink-shell .agrilink-dealer-group { text-transform: none; font-size: 13px; font-weight: 600; }
+.agrilink-shell.preview-scope .agrilink-dealer-link .badge.bg-primary { background: var(--agl-sel) !important; color: #fff !important; }
+/* 0,5,0 để thắng nhãn trạng thái nhạt của bản tối. */
+.agrilink-shell.preview-scope .agrilink-dealer-link .badge.bg-warning, .agrilink-shell.preview-scope .agrilink-dealer-link .badge.bg-danger { background: var(--agri-error) !important; color: #fff !important; }
+
+/* 3. Ô thống kê: icon trong vòng tròn xám, số màu chữ chính */
+.agrilink-shell .card-body > .d-flex > .flex-shrink-0[style] { border-radius: 50% !important; background: var(--agl-icon-bg, #E4E6EB) !important; color: var(--agri-text) !important; }
+.agrilink-shell a .card h4 { color: var(--agri-text); }
+
+/* 4. Trạng thái "đang chọn" = xám #84858A */
+.agrilink-shell .dealer-crop-chip.active, .agrilink-shell .matching-segment button.active,
+.agrilink-shell .inbox-filter button.active, .agrilink-shell .alh-drop-filter button.active,
+.agrilink-shell .choice-chips button.active {
+  background: var(--agl-sel) !important; border-color: var(--agl-sel) !important; color: #fff !important;
+}
+.agrilink-shell .dealer-crop-chip:hover { border-color: var(--agl-sel); color: var(--agri-text); }
+.agrilink-shell .intents-tabs button.active, .agrilink-shell .nav-tabs .nav-link.active { border-color: var(--agri-text) !important; color: var(--agri-text) !important; }
+.agrilink-shell .matching-slot.active, .agrilink-shell .intent-item.active { border-color: var(--agl-sel); color: var(--agri-text); }
+.agrilink-shell .voucher-card.is-selected { border-color: var(--agl-sel); box-shadow: 0 0 0 2px var(--agl-icon-bg, #E4E6EB); }
+.agrilink-shell .voucher-radio.is-on { border-color: var(--agl-sel); }
+.agrilink-shell .storefront-thumbs button.active, .agrilink-shell .listing-image.cover { border-color: var(--agl-sel); }
+
+/* 5. Icon, avatar, thẻ cây trồng: xám nhạt, chữ đen */
+.agrilink-shell .dealer-crop-tag { background: var(--agri-bg); color: var(--agri-text); }
+.agrilink-shell .dealer-crop-tag.match { background: var(--agl-sel); color: #fff; }
+.agrilink-shell .dealer-crop-tags > i { color: var(--agri-text-secondary); }
+.agrilink-shell .dealer-card i.ti-building-store, .agrilink-shell i.ti-building-store.fs-2 { color: var(--agri-text) !important; }
+.agrilink-shell .inbox-avatar, .agrilink-shell .alh-thread-avatar { background: var(--agl-icon-bg, #E4E6EB); color: var(--agri-text-secondary); }
+.agrilink-shell .inbox-avatar.shop, .agrilink-shell .alh-thread-avatar.is-shop { background: var(--agl-icon-bg, #E4E6EB); color: var(--agri-text); }
+.agrilink-shell .inbox-item.active { background: var(--agl-hover, rgba(0, 0, 0, .05)); }
+.agrilink-shell .conv-pinned { background: var(--agri-bg); border-color: var(--agri-border); }
+.agrilink-shell .conv-pinned > i, .agrilink-shell .msg-order-row i, .agrilink-shell .alh-cart-dealer i { color: var(--agri-text-secondary); }
+.agrilink-shell .msg.admin.in { background: var(--agri-bg); border-color: var(--agri-border); }
+.agrilink-shell .matching-rank { color: var(--agri-text-secondary); }
+.agrilink-shell .matching-reasons li::marker { color: var(--agri-text-secondary); }
+.agrilink-shell .cart-summary .is-total dd { color: var(--agri-text); }
+.agrilink-shell .complaint-step.done b, .agrilink-shell .complaint-line.done { background: var(--agl-sel); border-color: var(--agl-sel); }
+.agrilink-shell .complaint-step.now, .agrilink-shell .complaint-step.now b { color: var(--agri-text); border-color: var(--agri-text); }
+
+/* 6. Nút phụ viền xanh → nút xám kiểu Facebook */
+/* .btn.btn-outline-primary của theme gốc (!important, 0,2,0) nạp sau → cần 0,3,0. */
+.agrilink-shell .btn.btn-outline-primary, .agrilink-shell .btn.btn-outline-secondary {
+  background: var(--agl-icon-bg, #E4E6EB) !important; border-color: transparent !important; color: var(--agri-text) !important;
+}
+.agrilink-shell .btn.btn-outline-primary:hover, .agrilink-shell .btn.btn-outline-secondary:hover { background: var(--agl-icon-bg-hover, #D8DADF) !important; }
+
+/* 7. Nhãn trạng thái: nền nhạt + chữ màu */
+.agrilink-shell .badge.bg-success { background: #E8F5EC !important; color: #15803D !important; }
+.agrilink-shell .badge.bg-danger { background: #FDECEE !important; color: #C81E1E !important; }
+.agrilink-shell .badge.bg-warning { background: #FFF4DB !important; color: #B45309 !important; }
+.agrilink-shell .badge.bg-info, .agrilink-shell .badge.bg-primary { background: var(--agl-icon-bg, #E4E6EB) !important; color: var(--agri-text) !important; }
+.agrilink-shell .badge.bg-secondary, .agrilink-shell .badge.agrilink-status-cancelled { background: var(--agl-icon-bg, #E4E6EB) !important; color: var(--agri-text-secondary) !important; }
+.agrilink-shell .alh-right .badge, .agrilink-shell .alh-count { background: var(--agri-error) !important; color: #fff !important; }
+
+/* 8. Liên kết dạng dòng/thẻ (tên khách, mã đơn) dùng màu chữ, không tô xanh */
+.agrilink-shell.preview-scope .inbox-item, .agrilink-shell.preview-scope .inbox-item *,
+.agrilink-shell.preview-scope .conv-info-order, .agrilink-shell.preview-scope .conv-info-order *,
+.agrilink-shell.preview-scope .table a:not(.btn), .agrilink-shell.preview-scope .dealer-card a:not(.btn) { color: var(--agri-text); }
+.agrilink-shell.preview-scope .inbox-item small, .agrilink-shell.preview-scope .conv-info-order small { color: var(--agri-text-secondary); }
+.agrilink-shell .inbox-dot, .agrilink-shell .agrilink-notify-item.unread .agrilink-notify-dot { background: var(--agri-primary); }
+
+/* 9. Công tắc bật/tắt: bật = xanh lá (theme gốc đang xanh dương) */
+.agrilink-shell .form-check-input:checked { background-color: var(--agri-primary); border-color: var(--agri-primary); }
+.agrilink-shell .form-check-input:focus { box-shadow: 0 0 0 3px var(--agl-icon-bg, #E4E6EB); border-color: var(--agl-sel); }
+
+/* 10. Icon cửa hàng trên thẻ đại lý: vòng tròn xám như avatar trang */
+.agrilink-shell i.ti-building-store.fs-2 { flex: none; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: var(--agl-icon-bg, #E4E6EB); font-size: 26px !important; }
+
+/* 11. Tab dạng gạch chân đen (như tab header), bỏ khung ô */
+.agrilink-shell .nav-tabs { border-bottom: 1px solid var(--agri-border); gap: 4px; }
+.agrilink-shell .nav-tabs .nav-link { border: 0 !important; border-bottom: 3px solid transparent !important; border-radius: 0; background: transparent !important; padding: 10px 14px; font-weight: 600; color: var(--agri-text-secondary); }
+.agrilink-shell .nav-tabs .nav-link:hover { color: var(--agri-text); background: var(--agl-hover, rgba(0, 0, 0, .05)) !important; border-radius: 8px 8px 0 0; }
+.agrilink-shell .nav-tabs .nav-link.active { border-bottom-color: var(--agri-text) !important; color: var(--agri-text) !important; }
+
+/* 12. Thẻ nhu cầu trong danh sách: tiêu đề màu chữ, thẻ đang chọn viền xám đậm */
+.agrilink-shell.preview-scope .intent-item, .agrilink-shell.preview-scope .intent-item :not(.badge) { color: var(--agri-text); }
+.agrilink-shell.preview-scope .intent-item small, .agrilink-shell.preview-scope .intent-item .text-muted { color: var(--agri-text-secondary); }
+.agrilink-shell .intent-item.active { background: var(--agl-hover, rgba(0, 0, 0, .05)); border-color: var(--agl-sel); }
+
+/* 13. Bộ lọc kiểu thanh menu AgriPOS, màu đen: mục thường trong suốt chữ đen; rê chuột nền trắng;
+   đang chọn = viên trắng, chữ đen đậm, viền mờ đen (bản tối: chữ và viền sáng theo màu chữ). */
+.agrilink-shell .community-desktop .cm-feed-topics a, .agrilink-shell .community-desktop .cm-feed-sort button,
+.agrilink-shell .dealer-crop-chip, .agrilink-shell .matching-segment button, .agrilink-shell .inbox-filter button,
+.agrilink-shell .alh-drop-filter button {
+  border: 0 !important; border-radius: 999px !important; background: transparent !important; box-shadow: none !important;
+  color: var(--agri-text) !important; font-weight: 500 !important; transition: background .15s, box-shadow .15s, color .15s;
+}
+.agrilink-shell .community-desktop .cm-feed-topics a:hover, .agrilink-shell .community-desktop .cm-feed-sort button:hover,
+.agrilink-shell .dealer-crop-chip:hover, .agrilink-shell .matching-segment button:hover, .agrilink-shell .inbox-filter button:hover,
+.agrilink-shell .alh-drop-filter button:hover {
+  background: var(--agri-surface) !important; color: var(--agri-text) !important; box-shadow: 0 1px 2px rgba(0, 0, 0, .04) !important;
+}
+.agrilink-shell .community-desktop .cm-feed-topics a.active, .agrilink-shell .community-desktop .cm-feed-sort button.active,
+.agrilink-shell .dealer-crop-chip.active, .agrilink-shell .matching-segment button.active, .agrilink-shell .inbox-filter button.active,
+.agrilink-shell .alh-drop-filter button.active {
+  background: var(--agri-surface) !important; color: var(--agri-text) !important; font-weight: 600 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .10), 0 0 0 1px color-mix(in srgb, var(--agri-text) 22%, transparent) !important;
+}
+/* Trong khung trắng (danh sách nhu cầu, tin nhắn, bảng sổ xuống) viên đang chọn cần nền xám nhạt để nổi. */
+.agrilink-shell .card .matching-segment button.active, .agrilink-shell .inbox-filter button.active, .agrilink-shell .alh-drop-filter button.active,
+.agrilink-shell .card .matching-segment button:hover, .agrilink-shell .inbox-filter button:hover, .agrilink-shell .alh-drop-filter button:hover { background: var(--agri-bg) !important; }
+.agrilink-shell .matching-segment, .agrilink-shell .community-desktop .cm-feed-sort { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+
+/* 14. Cột menu (cột trái Cộng đồng, menu kênh đại lý) — mục đang mở cùng kiểu bộ lọc:
+   viên trắng nổi, chữ xám đậm, viền mờ xám; icon trong vòng tròn xám đậm, chữ trắng. */
+.agrilink-shell .agrilink-dealer-body > aside.agrilink-dealer-sidebar { background: transparent; border-right: 0; }
+.agrilink-shell:has(.agrilink-dealer-body) .agrilink-main { background: var(--agri-bg); }
+.agrilink-shell .community-desktop .cm-left nav a.active, .agrilink-shell .community-desktop .cm-topic-nav a.active,
+.agrilink-shell.preview-scope .agrilink-dealer-link.active {
+  background: var(--agri-surface) !important; color: var(--agl-sel) !important; font-weight: 600;
+  box-shadow: 0 1px 3px rgba(132, 133, 138, .15), 0 0 0 1px rgba(132, 133, 138, .30);
+}
+.agrilink-shell .community-desktop .cm-topic-nav a.active small { color: var(--agri-text-secondary); }
+.agrilink-shell .community-desktop .cm-left nav a:not(.active):hover, .agrilink-shell .community-desktop .cm-topic-nav a:not(.active):hover,
+.agrilink-shell.preview-scope .agrilink-dealer-link:not(.active):hover { background: var(--agri-surface) !important; box-shadow: 0 1px 2px rgba(0, 0, 0, .04); }
+
+/* 15. Vòng tròn icon của mục đang chọn có thêm viền (khe trắng + vòng xám). */
+.agrilink-shell .community-desktop .cm-left nav a.active > svg,
+.agrilink-shell .community-desktop .cm-topic-nav a.active .cm-topic-tile,
+.agrilink-shell .agrilink-dealer-link.active i {
+  box-shadow: 0 0 0 1px var(--agri-surface), 0 0 0 2px rgba(132, 133, 138, .45);
+}
+
+/* 16. Avatar đại lý (cửa hàng) giữ màu vàng mùa gặt như ban đầu. */
+.agrilink-shell .community-page .cm-avatar.business,
+.agrilink-shell i.ti-building-store.fs-2,
+.agrilink-shell .inbox-avatar.shop, .agrilink-shell .alh-thread-avatar.is-shop {
+  background: var(--agri-accent-50) !important; color: var(--agri-accent-700) !important;
+}
+
+/* 17. Cột trái Cộng đồng: mỗi mục một màu như Facebook — icon xanh/vàng/tím... trên nền tint nhạt, mục đang chọn tô đặc. */
+.agrilink-shell {
+  --tone-gold: #E0A100; --tone-green: #2E7D32; --tone-amber: #E08A00; --tone-violet: #7B4FD6; --tone-blue: #1877F2;
+  --tone-red: #E53935; --tone-slate: #5B6B7B; --tone-teal: #0F9D8A; --tone-sky: #0288D1; --tone-rose: #D81B60;
+}
+.agrilink-shell .community-desktop .cm-left [data-tone="green"] { --tone: var(--tone-green); }
+.agrilink-shell .community-desktop .cm-left [data-tone="amber"] { --tone: var(--tone-amber); }
+.agrilink-shell .community-desktop .cm-left [data-tone="violet"] { --tone: var(--tone-violet); }
+.agrilink-shell .community-desktop .cm-left [data-tone="blue"] { --tone: var(--tone-blue); }
+.agrilink-shell .community-desktop .cm-left [data-tone="red"] { --tone: var(--tone-red); }
+.agrilink-shell .community-desktop .cm-left [data-tone="slate"] { --tone: var(--tone-slate); }
+.agrilink-shell .community-desktop .cm-left [data-tone="teal"] { --tone: var(--tone-teal); }
+/* Chủ đề: màu theo thứ tự (giá, kỹ thuật, mùa vụ, sâu bệnh, vật tư, ...) */
+.agrilink-shell .community-desktop .cm-topic-nav:not(.cm-shortcuts) a:nth-of-type(5n+1) { --tone: var(--tone-amber); }
+.agrilink-shell .community-desktop .cm-topic-nav:not(.cm-shortcuts) a:nth-of-type(5n+2) { --tone: var(--tone-green); }
+.agrilink-shell .community-desktop .cm-topic-nav:not(.cm-shortcuts) a:nth-of-type(5n+3) { --tone: var(--tone-sky); }
+.agrilink-shell .community-desktop .cm-topic-nav:not(.cm-shortcuts) a:nth-of-type(5n+4) { --tone: var(--tone-rose); }
+.agrilink-shell .community-desktop .cm-topic-nav:not(.cm-shortcuts) a:nth-of-type(5n+5) { --tone: var(--tone-violet); }
+
+.agrilink-shell .community-desktop .cm-left nav a[data-tone] > svg,
+.agrilink-shell .community-desktop .cm-topic-nav a .cm-topic-tile {
+  background: color-mix(in srgb, var(--tone, var(--agri-text)) 14%, var(--agri-surface));
+  color: var(--tone, var(--agri-text));
+}
+.agrilink-shell .community-desktop .cm-left nav a[data-tone]:hover > svg,
+.agrilink-shell .community-desktop .cm-topic-nav a:hover .cm-topic-tile {
+  background: color-mix(in srgb, var(--tone, var(--agri-text)) 22%, var(--agri-surface));
+}
+.agrilink-shell .community-desktop .cm-left nav a.active[data-tone],
+.agrilink-shell .community-desktop .cm-topic-nav a.active {
+  background: color-mix(in srgb, var(--tone, var(--agri-primary)) 10%, var(--agri-surface)) !important;
+  color: var(--agri-text) !important;
+  box-shadow: none;
+}
+.agrilink-shell .community-desktop .cm-left nav a.active[data-tone] > svg,
+.agrilink-shell .community-desktop .cm-topic-nav a.active .cm-topic-tile {
+  background: var(--tone, var(--agri-primary)); color: #fff; box-shadow: none;
+}
+.agrilink-shell .community-desktop .cm-left nav a:not(.active):hover,
+.agrilink-shell .community-desktop .cm-topic-nav a:not(.active):hover {
+  background: color-mix(in srgb, var(--tone, var(--agri-text)) 7%, var(--agri-surface)) !important;
+}
+
+/* 18. Thanh lọc chủ đề + sắp xếp nằm trong một khung thẻ trắng như các card khác. */
+.agrilink-shell .community-desktop .cm-feed-filters {
+  padding: 8px 12px; background: var(--agri-surface); border: 0;
+  border-radius: 10px; box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+.agrilink-shell .community-desktop .cm-feed-filters { flex-wrap: nowrap; gap: 12px; }
+.agrilink-shell .community-desktop .cm-feed-filters .cm-feed-topics { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.agrilink-shell .community-desktop .cm-feed-filters .cm-feed-topics a, .agrilink-shell .community-desktop .cm-feed-filters .cm-feed-sort button { white-space: nowrap; flex: none; }
+.agrilink-shell .community-desktop .cm-feed-filters .cm-feed-sort { flex: none; margin-left: 0; }
+/* Chừa chỗ cho viền viên đang chọn (overflow cuộn ngang cắt cả chiều dọc) + vạch dọc ngăn hai nhóm. */
+.agrilink-shell .community-desktop .cm-feed-filters { padding: 10px 14px; gap: 10px; }
+.agrilink-shell .community-desktop .cm-feed-filters .cm-feed-topics { gap: 2px; padding: 4px 3px; margin: -4px -3px; }
+.agrilink-shell .community-desktop .cm-feed-filters .cm-feed-topics a { padding: 6px 11px; }
+.agrilink-shell .community-desktop .cm-feed-filters .cm-feed-sort { gap: 2px; padding: 4px 0 4px 12px; border-left: 1px solid var(--agri-border) !important; border-radius: 0; }
+.agrilink-shell .community-desktop .cm-feed-filters .cm-feed-sort button { padding: 6px 11px; }
+
+/* 19. Thanh trạng thái đơn hàng: viên xanh logo trượt sang mục đang chọn (PillGroup), mục thường trong suốt. */
+.agrilink-shell .agl-status-filter { display: flex; gap: 4px; padding: 3px; overflow-x: auto; scrollbar-width: none; }
+.agrilink-shell .agl-status-filter > button {
+  flex: none; white-space: nowrap; border: 0; border-radius: 999px; background: transparent; padding: 7px 14px;
+  color: var(--agri-text); font-size: 14px; font-weight: 500; transition: background .15s, color .25s;
+}
+.agrilink-shell .agl-status-filter > button:not(.active):hover { background: var(--agl-icon-bg, #E4E6EB); }
+.agrilink-shell .agl-status-filter > button.active { color: #fff; font-weight: 600; }
+.agrilink-shell .agl-status-filter.agl-pill-bar > .agri-tab-pill { background: var(--agri-primary); box-shadow: 0 2px 6px rgba(var(--agri-primary-rgb), .35); }
+
+/* 20. Menu kênh đại lý: cùng kiểu cột trái Cộng đồng — mỗi mục một màu theo nghiệp vụ (agrilinkNav.ts `tone`). */
+.agrilink-shell .agrilink-dealer-link[data-tone="green"] { --tone: var(--tone-green); }
+.agrilink-shell .agrilink-dealer-link[data-tone="amber"] { --tone: var(--tone-amber); }
+.agrilink-shell .agrilink-dealer-link[data-tone="violet"] { --tone: var(--tone-violet); }
+.agrilink-shell .agrilink-dealer-link[data-tone="blue"] { --tone: var(--tone-blue); }
+.agrilink-shell .agrilink-dealer-link[data-tone="red"] { --tone: var(--tone-red); }
+.agrilink-shell .agrilink-dealer-link[data-tone="slate"] { --tone: var(--tone-slate); }
+.agrilink-shell .agrilink-dealer-link[data-tone="teal"] { --tone: var(--tone-teal); }
+.agrilink-shell .agrilink-dealer-link[data-tone="sky"] { --tone: var(--tone-sky); }
+.agrilink-shell .agrilink-dealer-link[data-tone="rose"] { --tone: var(--tone-rose); }
+.agrilink-shell .agrilink-dealer-link[data-tone="gold"] { --tone: var(--tone-gold); }
+.agrilink-shell .agrilink-dealer-link[data-tone] i {
+  background: color-mix(in srgb, var(--tone) 14%, var(--agri-surface)); color: var(--tone);
+}
+.agrilink-shell .agrilink-dealer-link[data-tone]:hover i { background: color-mix(in srgb, var(--tone) 22%, var(--agri-surface)); }
+.agrilink-shell.preview-scope .agrilink-dealer-link[data-tone]:not(.active):hover {
+  background: color-mix(in srgb, var(--tone) 7%, var(--agri-surface)) !important; box-shadow: none;
+}
+.agrilink-shell.preview-scope .agrilink-dealer-link.active[data-tone] {
+  background: color-mix(in srgb, var(--tone) 10%, var(--agri-surface)) !important; color: var(--agri-text) !important; box-shadow: none;
+}
+.agrilink-shell .agrilink-dealer-link.active[data-tone] i { background: var(--tone); color: #fff; box-shadow: none; }
+
+/* 21. Nhãn trạng thái đơn: mỗi trạng thái một màu + chấm tròn. */
+.agrilink-shell .badge.agl-status { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; font-weight: 600; }
+.agrilink-shell .badge.agl-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.agrilink-shell .badge.agl-status-pending { background: #FFF1DC !important; color: #B45309 !important; }
+.agrilink-shell .badge.agl-status-confirmed { background: #E3EEFF !important; color: #1D5FD0 !important; }
+.agrilink-shell .badge.agl-status-delivering { background: #EFE7FD !important; color: #6A3FC4 !important; }
+.agrilink-shell .badge.agl-status-completed { background: #E3F4E8 !important; color: #1B7A3A !important; }
+.agrilink-shell .badge.agl-status-rejected { background: #FDE7E9 !important; color: #C62828 !important; }
+.agrilink-shell .badge.agl-status-cancelled { background: #ECEEF1 !important; color: #5B6B7B !important; }
+
+/* 22. Menu kênh đại lý dùng icon màu Fluent: vòng tint giữ như mục 20, ảnh icon 20px. */
+.agrilink-shell .agrilink-dealer-link .agl-nav-icon {
+  flex: none; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%;
+  background: color-mix(in srgb, var(--tone, var(--agri-text)) 12%, var(--agri-surface));
+  transition: transform .25s var(--agl-ease-spring, ease), background .15s;
+}
+.agrilink-shell .agrilink-dealer-link .agl-nav-icon > img { width: 20px; height: 20px; }
+.agrilink-shell .agrilink-dealer-link:not(.active):hover .agl-nav-icon { transform: scale(1.08) rotate(-6deg); background: color-mix(in srgb, var(--tone, var(--agri-text)) 20%, var(--agri-surface)); }
+.agrilink-shell .agrilink-dealer-link.active .agl-nav-icon { background: var(--agri-surface); box-shadow: 0 0 0 2px var(--tone, var(--agri-primary)); }
+@media (prefers-reduced-motion: reduce) { .agrilink-shell .agrilink-dealer-link:not(.active):hover .agl-nav-icon { transform: none; } }
+
+/* 23. Cột trái Cộng đồng dùng icon màu Fluent (kiểu Facebook): icon trong vòng tint nhạt theo màu mục,
+   mục đang chọn có viền màu thay cho nền đặc. */
+.agrilink-shell .community-desktop .cm-left nav a > .cm-color-icon {
+  box-sizing: content-box; flex: none; width: 22px; height: 22px; padding: 8px; border-radius: 50%;
+  background: color-mix(in srgb, var(--tone, var(--agri-text)) 12%, var(--agri-surface));
+  transition: transform .25s var(--agl-ease-spring, ease), background .15s;
+}
+.agrilink-shell .community-desktop .cm-left nav a:not(.active):hover > .cm-color-icon {
+  transform: scale(1.08) rotate(-6deg); background: color-mix(in srgb, var(--tone, var(--agri-text)) 20%, var(--agri-surface));
+}
+.agrilink-shell .community-desktop .cm-left nav a.active > .cm-color-icon {
+  background: var(--agri-surface); box-shadow: 0 0 0 2px var(--tone, var(--agri-primary));
+}
+.agrilink-shell .community-desktop .cm-topic-tile > .cm-color-icon { width: 22px; height: 22px; }
+.agrilink-shell .community-desktop .cm-topic-nav a.active .cm-topic-tile:has(> .cm-color-icon) {
+  background: var(--agri-surface); box-shadow: 0 0 0 2px var(--tone, var(--agri-primary));
+}
+@media (prefers-reduced-motion: reduce) { .agrilink-shell .community-desktop .cm-left nav a:not(.active):hover > .cm-color-icon { transform: none; } }
+.agrilink-shell .community-desktop .cm-left [data-tone="sky"] { --tone: var(--tone-sky); }

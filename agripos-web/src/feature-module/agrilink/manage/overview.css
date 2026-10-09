@@ -1,0 +1,32 @@
+/* Ô số liệu Tổng quan AgriLink: icon màu lớn trên nền tint, số to dễ đọc. */
+.agl-stat.card { --tone: var(--agri-primary); min-height: 0; flex-direction: row; align-items: center; gap: 16px; padding: 20px 22px; transition: transform .2s ease, box-shadow .2s ease; }
+.agl-stat[data-tone="amber"] { --tone: var(--tone-amber, #E08A00); }
+.agl-stat[data-tone="blue"] { --tone: var(--tone-blue, #1877F2); }
+.agl-stat[data-tone="violet"] { --tone: var(--tone-violet, #7B4FD6); }
+.agl-stat[data-tone="green"] { --tone: var(--tone-green, #2E7D32); }
+a:hover > .agl-stat { transform: translateY(-2px); box-shadow: var(--agri-shadow-md); }
+.agl-stat-icon {
+  flex: none; width: 64px; height: 64px; display: grid; place-items: center; border-radius: 18px;
+  background: color-mix(in srgb, var(--tone) 12%, var(--agri-surface));
+}
+.agl-stat-icon > img { width: 40px; height: 40px; }
+.agl-stat-body { display: grid; gap: 2px; min-width: 0; }
+.agl-stat-label { font-size: 15px; font-weight: 500; color: var(--agri-text-secondary); }
+.agl-stat-value { white-space: nowrap; font-size: clamp(20px, 1.7vw, 30px); line-height: 1.15; font-weight: 700; color: var(--agri-text); }
+.agl-stat-note { font-size: 13px; color: var(--agri-text-secondary); }
+@media (max-width: 575px) {
+  .agl-stat { flex-direction: column; align-items: flex-start; gap: 10px; padding: 16px; }
+  .agl-stat-icon { width: 52px; height: 52px; border-radius: 14px; }
+  .agl-stat-icon > img { width: 32px; height: 32px; }
+  .agl-stat-value { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { a:hover > .agl-stat { transform: none; } }
+
+/* Nhắc cập nhật giá: nền trắng, viền nhấn xanh dương nhẹ thay cho hộp vàng chói. */
+.agl-price-reminder {
+  flex-direction: row; flex-wrap: wrap; align-items: center; gap: 14px; padding: 14px 18px;
+  border-left: 4px solid var(--tone-blue, #1877F2);
+}
+.agl-price-reminder > img { flex: none; }
+.agl-price-reminder strong { display: block; font-size: 15px; color: var(--agri-text); }
+.agl-price-reminder span { font-size: 13px; color: var(--agri-text-secondary); }

@@ -1,0 +1,450 @@
+/* ===== Màu chữ & nền kiểu Facebook (mockup 47): chỉ 1 màu chữ chính + 1 màu chữ phụ =====
+   Ghi đè token trong phạm vi AgriLink; AgriPOS giữ bảng màu cũ. */
+.agrilink-shell {
+  --agri-text: #050505; --agri-text-secondary: #65676B; --agri-text-muted: #8A8D91;
+  --agri-bg: #F0F2F5; --agri-border: #E4E6EB;
+  --ink: #050505; --ink-80: #050505; --ink-48: #65676B; --ink-muted: #8A8D91;
+  --bs-body-color: #050505; --bs-secondary-color: #65676B; --bs-border-color: #E4E6EB;
+  /* Màu chính = xanh lá logo (bản D): nút, liên kết, avatar, chip đang chọn. */
+  --agri-primary: #15803D; --agri-primary-light: #22C55E; --agri-primary-dark: #166534; --agri-primary-rgb: 21, 128, 61;
+  --agri-primary-50: #E8F5EC; --agri-primary-100: #C6E7D0; --agri-primary-600: #166534; --agri-primary-700: #14532D;
+  --p: #15803D; --p-light: #22C55E; --p-dark: #166534; --p-50: #E8F5EC; --p-100: #C6E7D0;
+  --bs-primary: #15803D; --bs-primary-rgb: 21, 128, 61; --bs-link-color: #15803D; --bs-link-color-rgb: 21, 128, 61; --bs-link-hover-color: #166534; --bs-link-hover-color-rgb: 22, 101, 52;
+  color: var(--agri-text);
+}
+.agrilink-shell .text-muted, .agrilink-shell .text-secondary { color: var(--agri-text-secondary) !important; }
+.agrilink-shell .text-dark { color: var(--agri-text) !important; }
+/* Theme gốc tô liên kết trong bảng xanh than cố định (#212B36). */
+.agrilink-shell :is(td, th) a:not(.btn) { color: var(--agri-text); }
+/* Menu thả xuống (tài khoản…): chữ thường như Facebook, không tô màu liên kết. */
+.agrilink-shell .dropdown-menu { min-width: 220px; background: var(--agri-surface); border-color: var(--agri-border); }
+.agrilink-shell .dropdown-menu .dropdown-item { color: var(--agri-text); white-space: nowrap; }
+.agrilink-shell .dropdown-menu .dropdown-item:hover, .agrilink-shell .dropdown-menu .dropdown-item:focus-visible { background: var(--agl-icon-bg, #F0F2F5); color: var(--agri-text); }
+.agrilink-shell .nav-tabs .nav-link { color: var(--agri-text-secondary); }
+.agrilink-shell .nav-tabs .nav-link.active { color: var(--agri-text); }
+
+/* ===== Màu nhấn AgriLink (bản D): cam mùa gặt cho voucher, khuyến mãi, tiền giảm =====
+   Màu chính (nút, liên kết) là xanh lá logo ở khối trên. */
+.agrilink-shell { --agri-accent: #D97706; --agri-accent-50: #FFF4DB; --agri-accent-100: #FDE3B5; --agri-accent-700: #B45309; }
+.agrilink-shell .btn-accent { background: var(--agri-accent); border-color: var(--agri-accent); color: #fff; }
+.agrilink-shell .btn-accent:hover, .agrilink-shell .btn-accent:focus-visible { background: var(--agri-accent-700); border-color: var(--agri-accent-700); color: #fff; }
+.agrilink-shell .btn-accent-soft { background: var(--agri-accent-50); border-color: transparent; color: var(--agri-accent-700); }
+.agrilink-shell .badge.bg-accent { background: var(--agri-accent); color: #fff; }
+.agrilink-shell .text-accent { color: var(--agri-accent-700); }
+
+/* ===== Thang cỡ chữ AgriLink (mockup 45 đã duyệt): 24 · 18 · 16 · 15 · 13 · 12, font Inter =====
+   Chỉ áp trong .agrilink-shell — AgriPOS vẫn dùng nền 17px của .preview-scope. */
+.agrilink-shell.preview-scope { font-size: 15px; line-height: 1.5; letter-spacing: normal; }
+.agrilink-shell h1 { font-size: 24px; font-weight: 700; line-height: 1.25; }
+.agrilink-shell h2, .agrilink-shell h4 { font-size: 18px; font-weight: 600; line-height: 1.3; }
+.agrilink-shell h3, .agrilink-shell h5 { font-size: 16px; font-weight: 600; line-height: 1.35; }
+.agrilink-shell h6 { font-size: 13px; font-weight: 400; }
+.agrilink-shell .page-header .page-title h4 { font-size: 24px; font-weight: 700; line-height: 1.25; }
+.agrilink-shell .page-header .page-title h6 { margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--agri-text-secondary); }
+.agrilink-shell small, .agrilink-shell .small { font-size: 13px; }
+.agrilink-shell .badge { font-size: 12px; }
+
+.agrilink-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--agri-bg);
+  color: var(--agri-text);
+  /* Actual rendered height of .agrilink-bottom-nav (icon + label + padding). Kept as a
+     token so the mobile content padding below can never drift out of sync with it. */
+  --agrilink-bottomnav-h: 56px;
+}
+.agrilink-sidebar {
+  width: 264px;
+  flex: none;
+  background: var(--agri-surface);
+  border-right: 1px solid var(--agri-border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.agrilink-nav-group {
+  margin-bottom: 1.5rem;
+}
+.agrilink-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  text-decoration: none;
+  color: var(--agri-text);
+  border-radius: var(--r-md);
+  margin: 0 0.5rem;
+}
+.agrilink-nav-link:hover,
+.agrilink-nav-link.active {
+  color: var(--agri-primary);
+  background: var(--p-50);
+}
+.agrilink-nav-link span:not(.badge) {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.agrilink-nav-link .badge {
+  flex: none;
+  margin-left: auto;
+}
+.agrilink-nav-link i {
+  flex: none;
+  font-size: 1.3rem;
+}
+.agrilink-main {
+  min-width: 0;
+  flex: 1;
+}
+.agrilink-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+/* Specificity note: agripos-preview.css defines `.preview-scope main { padding: 0; }`
+   (specificity 0,1,1) which otherwise wins over a bare `.agrilink-content` rule
+   (0,1,0) regardless of source order, silently zeroing this padding. Qualifying the
+   selector with `.agrilink-main` (0,2,0) keeps this rule in control on every page. */
+.agrilink-main .agrilink-content {
+  max-width: 1280px;
+  /* Chỉ căn giữa ngang: `auto` dọc trong khung flex của kênh đại lý đẩy trang ít nội dung xuống giữa màn hình. */
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.agrilink-bottom-nav {
+  display: none;
+}
+@media (max-width: 991px) {
+  .agrilink-sidebar {
+    display: none;
+  }
+  .agrilink-main .agrilink-content {
+    padding: 1rem;
+    /* Bottom nav is fixed/overlaid, so page content needs matching bottom padding
+       (nav height + 16px breathing room + the device's safe-area inset) or the last
+       controls on a page (e.g. Xác nhận / Hoàn thành) are unreachable under it. */
+    padding-bottom: calc(var(--agrilink-bottomnav-h) + 16px + env(safe-area-inset-bottom));
+  }
+  .agrilink-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    min-height: var(--agrilink-bottomnav-h);
+    background: var(--agri-surface);
+    border-top: 1px solid var(--agri-border);
+    overflow-x: auto;
+    justify-content: space-around;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .agrilink-bottom-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 64px;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.65rem;
+    line-height: 1.1;
+    text-align: center;
+    text-decoration: none;
+    color: var(--agri-text-secondary);
+  }
+  .agrilink-bottom-link i {
+    font-size: 1.25rem;
+    margin-bottom: 0.2rem;
+  }
+  .agrilink-bottom-link.active {
+    color: var(--agri-primary);
+  }
+}
+@media (max-width: 991px) {
+  .agrilink-bottom-nav {
+    overflow: visible;
+  }
+  .agrilink-bottom-link {
+    min-width: 0;
+    position: relative;
+    border: 0;
+    background: transparent;
+    width: 100%;
+  }
+  .agrilink-bottom-link .badge {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    font-size: 0.55rem;
+  }
+  .agrilink-more {
+    flex: 1;
+    min-width: 0;
+  }
+.agrilink-more-menu {
+    position: absolute;
+    right: 0.5rem;
+    bottom: calc(100% + 0.5rem);
+    width: min(300px, 90vw);
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--agri-surface);
+    border: 1px solid var(--agri-border);
+    border-radius: var(--r-md);
+    box-shadow: var(--agri-shadow-md);
+    padding: 0.5rem;
+}
+}
+@media (min-width: 992px) {
+  .agrilink-shell .agrilink-logo { display:flex; align-items:center; gap:9px; color:var(--agri-text); font-size:20px; font-weight:700; white-space:nowrap; }
+  .agrilink-logo-mark { width:34px; height:34px; flex:none; }
+  .agrilink-logo-accent { color:#16A34A; }
+  .agrilink-icon-link { position:relative; color:var(--agri-text); font-size:23px; padding:4px; }
+  .agrilink-icon-link .badge { position:absolute; top:-4px; right:-9px; font-size:12px; }
+  /* Cộng đồng trải hết chiều ngang: hai cột bên bám sát mép màn hình như Facebook. */
+  .agrilink-main .agrilink-content.agrilink-content-bleed { max-width:none; margin:0; padding:0; }
+  .agrilink-avatar-button { width:40px; height:40px; border:0; border-radius:50%; color:var(--agri-surface); background:var(--agri-primary); font-size:13px; font-weight:700; }
+  .agrilink-avatar-button:hover { color:var(--agri-surface); background:var(--agri-primary-dark); }
+  .agrilink-avatar-name { display:none; }
+}
+@media (max-width: 991px) {
+  /* Mobile: chỉ logo + tài khoản; điều hướng nằm ở thanh dưới. */
+  .alh { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:var(--agri-surface); border-bottom:1px solid var(--agri-border); }
+  .alh .agrilink-logo { display:flex; align-items:center; gap:8px; color:var(--agri-text); font-weight:700; }
+  .alh-search, .alh-tabs, .alh-cta, .alh-circle, .alh-menu, .alh-tip, .alh-wordmark { display:none; }
+  .alh-right { display:flex; align-items:center; gap:8px; }
+  .agrilink-avatar-initials { display:none; }
+}
+@media (max-width: 575px) {
+  /* Điện thoại: tên đầy đủ làm thanh đầu trang tràn ngang (cả trang bị thu nhỏ) — chỉ hiện chữ viết tắt. */
+  .alh .agrilink-avatar-name { display:none; }
+  .alh .agrilink-avatar-initials { display:inline; }
+  .agrilink-shell .alh .agrilink-avatar-button { display:grid; place-items:center; width:40px; height:40px; padding:0; border:0; border-radius:50%; background:var(--agri-primary); color:#fff; font-size:14px; font-weight:700; }
+  .agrilink-shell .alh .agrilink-avatar-button::after { display:none; }
+  /* Chuông: nút tròn, số đếm nổi ở góc (như bản desktop) thay cho viên thuốc dài. */
+  .agrilink-shell .alh-right .agrilink-notify-button { position:relative; display:grid; place-items:center; width:40px; height:40px; padding:0; border:0 !important; border-radius:50%; background:var(--agl-icon-bg, #E4E6EB) !important; color:var(--agri-text) !important; }
+  .alh-right .agrilink-notify-button i { font-size:20px; }
+  .alh-right .agrilink-notify-button .badge { position:absolute; top:-4px; right:-4px; min-width:19px; height:19px; margin:0; padding:0 5px; border-radius:999px; background:var(--agri-error); color:#fff; font-size:12px; font-weight:700; line-height:19px; text-align:center; }
+}
+
+/* Status labels are written in sentence case; the theme capitalises every word. */
+.agrilink-shell .badge { text-transform: none; }
+.agrilink-shell .form-check-label,
+.agrilink-shell .matching-product-row > span { color: var(--agri-text); }
+.agrilink-shell .badge.agrilink-status-cancelled { background: var(--agri-text-secondary); color: var(--agri-surface); }
+.agrilink-dealer-body { display: flex; min-height: calc(100vh - 68px); }
+.agrilink-dealer-sidebar { width: 252px; flex: none; display: flex; flex-direction: column; padding: 20px 10px; background: var(--agri-surface); border-right: 1px solid var(--agri-border); }
+.agrilink-dealer-group { padding: 20px 14px 8px; color: var(--agri-text-secondary); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+.agrilink-shell.preview-scope .agrilink-dealer-link { display: flex; width: 100%; align-items: center; gap: 8px; padding: 11px 12px; color: var(--agri-text-secondary); text-decoration: none; border: 0; border-radius: var(--agri-radius-md); background: transparent; text-align: left; font-weight: 500; white-space: nowrap; }
+.agrilink-dealer-link i { font-size: 20px; }
+.agrilink-dealer-link .badge { flex: none; }
+.agrilink-shell.preview-scope .agrilink-dealer-link:hover, .agrilink-shell.preview-scope .agrilink-dealer-link.active { background: var(--agri-primary-50); color: var(--agri-primary); }
+.agrilink-dealer-app { margin-top: auto; }
+.agrilink-dealer-body .agrilink-content { width: 100%; max-width: none; padding: 28px 32px; }
+.agrilink-shell:has(.agrilink-dealer-body) .agrilink-header { background: var(--agri-surface); border-bottom: 1px solid var(--agri-border); }
+@media (max-width: 991px) { .agrilink-dealer-sidebar { display: none; } .agrilink-dealer-body .agrilink-content { padding: 16px 16px calc(var(--agrilink-bottomnav-h) + 16px); } }
+
+/* Bảng sổ xuống Thông báo / Tin nhắn / Giỏ hàng — kiểu Facebook */
+.agrilink-notify { position: relative; }
+.agrilink-notify-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1050;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 80px);
+  background: var(--agri-surface);
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.agrilink-notify-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 4px;
+}
+.agrilink-shell .agrilink-notify-head strong { font-size: 24px; font-weight: 700; color: var(--agri-text); }
+.agrilink-notify-head .btn-link { font-size: 13px; font-weight: 600; text-decoration: none; }
+.agrilink-notify-list { flex: 1; min-height: 0; max-height: 520px; overflow-y: auto; padding: 0 8px 8px; }
+.agrilink-notify-item {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  color: var(--agri-text);
+}
+.agrilink-notify-item:hover { background: var(--agl-hover, rgba(0, 0, 0, 0.05)); }
+.agrilink-notify-dot {
+  flex: 0 0 12px;
+  height: 12px;
+  align-self: center;
+  border-radius: 50%;
+  background: transparent;
+}
+.agrilink-notify-item.unread .agrilink-notify-dot { background: var(--agri-primary); }
+.agrilink-notify-body { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.agrilink-notify-title { font-size: 15px; line-height: 1.35; color: var(--agri-text); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.agrilink-notify-title b { font-weight: 600; }
+.agrilink-notify-meta { font-size: 13px; color: var(--agri-text-secondary); }
+.agrilink-notify-empty { padding: 28px 16px; text-align: center; font-size: 14px; color: var(--agri-text-secondary); }
+.agrilink-shell .agrilink-notify-footer {
+  flex: none;
+  margin: 4px 16px 14px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--agl-icon-bg, #E4E6EB);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--agri-text);
+}
+.agrilink-shell .agrilink-notify-footer:hover { background: var(--agl-icon-bg-hover, #D8DADF); }
+.agrilink-notify-panel:focus { outline: none; }
+.agrilink-shell .alh-right .agrilink-notify-button.is-open { background: var(--agri-primary-50) !important; color: var(--agri-primary) !important; }
+
+/* Riêng Thông báo: avatar + huy hiệu loại, thời gian màu chính khi chưa đọc, nút "…". */
+.agl-nitem-avatar { position: relative; flex: 0 0 56px; height: 56px; display: grid; place-items: center; border-radius: 50%; background: var(--agri-accent-50); color: var(--agri-accent-700); font-size: 18px; font-weight: 700; }
+.agl-nitem-kind { position: absolute; right: -4px; bottom: -4px; width: 28px; height: 28px; display: grid; place-items: center; border: 2px solid var(--agri-surface); border-radius: 50%; color: #fff; font-size: 15px; background: var(--agri-primary); }
+.agl-nitem-kind.comment { background: #22C55E; }
+.agl-nitem-kind.moderation { background: #64748B; }
+.agl-nitem-kind.rate { background: #F59E0B; }
+.agl-nitem-kind.order { background: #D97706; }
+.agl-nitem-kind.offer { background: var(--agri-primary); }
+.agl-nitem-time { font-size: 13px; color: var(--agri-text-secondary); }
+.agl-nitem.unread .agl-nitem-time { color: var(--agri-primary); font-weight: 600; }
+.agl-nsection { display: flex; align-items: center; justify-content: space-between; padding: 12px 8px 4px; }
+.agl-nsection span { font-size: 17px; font-weight: 600; color: var(--agri-text); }
+.agl-nsection button { border: 0; border-radius: 6px; padding: 4px 8px; background: none; color: var(--agri-primary); font-size: 15px; }
+.agl-nsection button:hover { background: var(--agl-hover, rgba(0, 0, 0, 0.05)); }
+.agl-notify-fb .alh-drop-filter { padding: 8px 16px 0; }
+.agl-notify-fb .alh-drop-filter button { padding: 7px 12px; font-size: 15px; color: var(--agri-text); }
+.agl-notify-fb .alh-drop-filter button.active { color: var(--agri-primary); }
+.agl-more { position: relative; }
+.agl-more-button { width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--agri-text-secondary); font-size: 20px; }
+.agl-more-button:hover, .agl-more-button[aria-expanded="true"] { background: var(--agl-hover, rgba(0, 0, 0, 0.05)); }
+.agl-more-menu { position: absolute; right: 0; top: calc(100% + 4px); z-index: 2; min-width: 260px; padding: 8px; border-radius: 8px; background: var(--agri-surface); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1); }
+.agl-more-menu button { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px; border: 0; border-radius: 6px; background: none; color: var(--agri-text); font-size: 15px; font-weight: 500; text-align: left; white-space: nowrap; }
+.agl-more-menu button i { font-size: 20px; }
+.agl-more-menu button:hover:not(:disabled) { background: var(--agl-hover, rgba(0, 0, 0, 0.05)); }
+.agl-more-menu button:disabled { opacity: 0.5; }
+
+
+/* ===== Header người mua kiểu Facebook (desktop) ===== */
+@media (min-width: 992px) {
+  .alh { position:sticky; top:0; z-index:1030; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; height:60px; padding:0 16px; background:var(--agri-surface); box-shadow:0 1px 2px rgba(15, 23, 42, .1); }
+  .alh-left { display:flex; align-items:center; gap:10px; min-width:0; }
+  .alh-search { position:relative; width:240px; min-width:0; }
+  .alh-search i { position:absolute; left:13px; top:50%; transform:translateY(-50%); font-size:18px; color:var(--agri-text-secondary); }
+  .alh-search input { width:100%; height:40px; border:0; border-radius:999px; background:var(--agri-bg); padding:0 14px 0 38px; font-size:15px; }
+  .alh-search input:focus { outline:2px solid var(--agri-primary-100); }
+  .alh-tabs { display:flex; height:60px; }
+  .agrilink-shell .alh-tab { position:relative; display:grid; place-items:center; width:112px; height:60px; color:var(--agri-text-secondary); text-decoration:none; }
+  /* Tab đang mở: đen + vạch đen (kiểu Instagram/Threads, mockup 48 · kiểu 3). */
+  .alh-tab::before { content:""; position:absolute; inset:4px 6px; border-radius:var(--agri-radius-md); transition:background .12s; }
+  .alh-tab:hover::before { background:var(--agri-bg); }
+  .alh-tab i { position:relative; font-size:28px; line-height:1; }
+  .agrilink-shell .alh-tab.active { color:var(--agri-primary); }
+  .alh-tab.active::before { background:transparent; }
+  .alh-tab.active::after { content:""; position:absolute; left:4px; right:4px; bottom:0; height:3px; border-radius:3px 3px 0 0; background:var(--agri-primary); }
+  .alh-right { display:flex; justify-content:flex-end; align-items:center; gap:8px; min-width:0; }
+  .alh-cta { display:inline-flex; align-items:center; gap:6px; height:40px; padding:0 14px; border-radius:999px; font-weight:600; white-space:nowrap; }
+  .agrilink-shell .alh-circle, .agrilink-shell .alh-right .agrilink-notify-button { position:relative; display:grid; place-items:center; width:40px; height:40px; padding:0; border:0; border-radius:50%; background:var(--agl-icon-bg, #E4E6EB); color:var(--agri-text); text-decoration:none; }
+  .alh-circle:hover, .agrilink-shell .alh-right .agrilink-notify-button:hover { background:var(--agl-icon-bg-hover, #D8DADF); color:var(--agri-text); }
+  /* Theme đặt nền trong suốt !important cho .btn-outline-secondary. */
+  .agrilink-shell .alh-right .agrilink-notify-button { background:var(--agl-icon-bg, #E4E6EB) !important; border:0 !important; color:var(--agri-text) !important; }
+  .agrilink-shell .alh-right .agrilink-notify-button:hover { background:var(--agl-icon-bg-hover, #D8DADF) !important; }
+  .agrilink-shell .alh-circle.active, .alh-circle.is-open { background:var(--agri-primary-50); color:var(--agri-primary); }
+  .alh-circle i, .alh-right .agrilink-notify-button i { font-size:20px; }
+  .alh-count, .alh-right .agrilink-notify-button .badge { position:absolute; top:-4px; right:-4px; min-width:19px; height:19px; margin:0; padding:0 5px; border-radius:999px; background:var(--agri-error); color:#fff; font-size:12px; font-weight:700; line-height:19px; text-align:center; }
+  /* Tooltip tên chức năng: hiện khi rê chuột hoặc focus bằng bàn phím. */
+  .alh-tip { position:absolute; top:calc(100% + 6px); left:50%; transform:translate(-50%, -4px); padding:6px 10px; border-radius:var(--agri-radius-md); background:rgba(28, 30, 33, .92); color:#fff; font-size:13px; font-weight:500; line-height:1.3; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .12s .25s, transform .12s .25s; z-index:1040; }
+  .alh-tab:hover .alh-tip, .alh-tab:focus-visible .alh-tip, .alh-circle:hover .alh-tip, .alh-circle:focus-visible .alh-tip, .alh-has-tip:hover > .alh-tip { opacity:1; transform:translate(-50%, 0); }
+  .alh-has-tip { position:relative; }
+  .alh-has-tip:has(.agrilink-notify-panel) > .alh-tip { display:none; }
+  .agrilink-shell .alh .agrilink-avatar-button { display:grid; place-items:center; width:40px; height:40px; padding:0; border:0; border-radius:50%; background:var(--agri-primary); color:#fff; font-size:14px; font-weight:700; }
+  .agrilink-shell .alh .agrilink-avatar-button::after { display:none; }
+  .agrilink-shell .alh .agrilink-avatar-button:hover { background:var(--agri-primary-dark); color:#fff; }
+  .alh-menu { position:relative; }
+  .alh-menu-panel { position:absolute; top:calc(100% + 8px); right:0; width:380px; max-height:calc(100vh - 80px); overflow-y:auto; padding:14px 12px; border-radius:var(--agri-radius-lg); background:var(--agri-surface); box-shadow:0 12px 28px rgba(15, 23, 42, .2), 0 2px 4px rgba(15, 23, 42, .1); z-index:1050; }
+  .agrilink-shell .alh-menu-panel h2 { margin:0 8px 6px; font-size:24px; font-weight:700; color:var(--agri-text); }
+  .agrilink-shell .alh-menu-panel h3 { margin:14px 8px 4px; font-size:13px; font-weight:600; color:var(--agri-text-secondary); text-transform:none; }
+  .alh-menu-panel section + section { margin-top:8px; }
+  .alh-menu-panel section + section { border-top:1px solid var(--agri-border); }
+  .agrilink-shell .alh-menu-item { display:flex; align-items:center; gap:12px; width:100%; padding:8px; border:0; border-radius:var(--agri-radius-md); background:none; color:var(--agri-text); text-align:left; text-decoration:none; }
+  .alh-menu-item:hover { background:var(--agri-bg); }
+  .alh-menu-item strong { display:block; font-size:14px; font-weight:600; }
+  .alh-menu-item small { display:block; font-size:12px; color:var(--agri-text-secondary); }
+  /* Như menu Facebook: icon đen trong vòng tròn xám, chữ đen. */
+  .alh-menu-icon { display:grid; place-items:center; flex:none; width:36px; height:36px; border-radius:50%; background:var(--agl-icon-bg, #E4E6EB); color:var(--agri-text); font-size:20px; }
+  .agrilink-shell .alh-menu-item:hover, .agrilink-shell .alh-menu-item.active { background:var(--agl-hover, rgba(0,0,0,.05)); color:var(--agri-text); }
+  .alh-menu-item strong { font-size:15px; font-weight:500; }
+}
+@media (min-width: 992px) and (max-width: 1279px) {
+  .alh-wordmark, .alh-cta-text { display:none; }
+  .alh-search { width:200px; }
+  .agrilink-shell .alh-tab { width:88px; }
+  .alh-cta { width:40px; padding:0; justify-content:center; }
+}
+
+/* ===== Bảng thả xuống Tin nhắn / Giỏ hàng + header kênh đại lý ===== */
+@media (min-width: 992px) {
+  .alh-channel { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 12px; border-radius:999px; background:var(--agri-primary-50); color:var(--agri-primary); font-size:13px; font-weight:600; white-space:nowrap; }
+  .alh-channel i { font-size:16px; }
+  .agrilink-shell .alh-pill { display:inline-flex; align-items:center; gap:6px; height:40px; padding:0 14px; border-radius:999px; background:var(--agl-icon-bg, #E4E6EB); color:var(--agri-text); font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap; }
+  .agrilink-shell .alh-pill:hover { background:var(--agl-icon-bg-hover, #D8DADF); color:var(--agri-text); }
+  .alh-pill i { font-size:18px; }
+  .alh-dealer + .agrilink-dealer-body { min-height:calc(100vh - 60px); }
+}
+.alh-drop-filter { display:flex; gap:6px; padding:8px 12px 4px; }
+.alh-drop-filter button { border:0; border-radius:999px; padding:5px 12px; background:transparent; color:var(--agri-text-secondary); font-size:13px; font-weight:600; }
+.alh-drop-filter button:hover { background:var(--agri-bg); }
+.alh-drop-filter button.active { background:var(--agri-primary-50); color:var(--agri-primary); }
+.agrilink-notify-item.alh-thread { align-items:center; }
+.alh-thread-avatar { display:grid; place-items:center; flex:0 0 40px; height:40px; border-radius:50%; background:var(--agri-primary-50); color:var(--agri-primary); font-size:13px; font-weight:700; }
+.alh-thread-avatar.is-shop { border-radius:var(--agri-radius-md); background:var(--agri-success-50); color:var(--agri-success-700); }
+.alh-thread .agrilink-notify-body { flex:1; }
+.alh-thread-preview { font-size:12px; color:var(--agri-text-secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.alh-thread.unread .alh-thread-preview { color:var(--agri-text); font-weight:600; }
+.alh-thread-time { flex:none; align-self:flex-start; margin-top:2px; font-size:12px; color:var(--agri-text-secondary); }
+.alh-thread .agrilink-notify-dot { margin-top:0; }
+.alh-cart-panel { width:400px; }
+.alh-cart-group { padding:6px 0 4px; border-bottom:1px solid var(--agri-border); }
+.alh-cart-dealer { display:flex; align-items:center; gap:6px; padding:4px 16px; font-size:13px; font-weight:700; }
+.alh-cart-dealer i { color:var(--agri-primary); font-size:16px; }
+.agrilink-shell .alh-cart-dealer a { color:var(--agri-text); text-decoration:none; }
+.agrilink-shell .alh-cart-dealer a:hover { color:var(--agri-primary); }
+.alh-cart-line { display:flex; align-items:flex-start; gap:10px; padding:8px 16px; }
+.alh-cart-line img, .alh-cart-thumb { flex:0 0 48px; height:48px; border-radius:var(--agri-radius-md); object-fit:cover; background:var(--agri-bg); }
+.alh-cart-thumb { display:grid; place-items:center; color:var(--agri-text-muted); font-size:20px; }
+.alh-cart-info { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.alh-cart-name { font-size:13px; font-weight:600; line-height:1.35; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.alh-cart-info small { font-size:12px; color:var(--agri-text-secondary); }
+.alh-stepper { display:inline-flex; align-items:center; align-self:flex-start; margin-top:4px; border:1px solid var(--agri-border); border-radius:999px; }
+.alh-stepper button { display:grid; place-items:center; width:26px; height:26px; border:0; border-radius:50%; background:transparent; color:var(--agri-text); }
+.alh-stepper button:hover { background:var(--agri-bg); }
+.alh-stepper span { min-width:28px; text-align:center; font-size:13px; font-weight:600; }
+.alh-cart-right { display:flex; flex-direction:column; align-items:flex-end; gap:6px; font-size:13px; }
+.alh-cart-remove { border:0; background:transparent; color:var(--agri-text-muted); font-size:16px; padding:2px; border-radius:var(--agri-radius-sm); }
+.alh-cart-remove:hover { color:var(--agri-error); background:var(--agri-error-50); }
+.alh-cart-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; font-size:13px; }
+
+/* Theme POS tô xanh dương (!important) cho .btn.btn-primary khi hover/focus/active — gồm nút
+   "Tôi muốn bán / mua" đang ở trang Bán/Mua. Giữ xanh lá logo trong AgriLink. */
+.agrilink-shell .btn.btn-primary:is(:hover, :focus, .focus, :active, .active) {
+  background-color:var(--agri-primary-dark) !important; border-color:var(--agri-primary-dark) !important; box-shadow:none;
+}
